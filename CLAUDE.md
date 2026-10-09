@@ -216,6 +216,14 @@ None right now. Add new ones here as they come up.
 
 ## Working conventions for Claude
 
+- Run tests with `python manage.py test` (compile translations first with
+  `pybabel compile --domain django --directory locale`); CI runs the same
+  plus `makemigrations --check`.
+- User-facing strings are written in English in code/templates and
+  translated in `locale/de/LC_MESSAGES/django.po`. German must always be
+  complete.
+- Configuration is via `GGS_*` env vars, documented in README.md.
+
 - Keep the app runnable with one `docker compose up`.
 - Prefer few dependencies and boring, well-supported tech.
 - Update this file when a decision is made: move the question out of

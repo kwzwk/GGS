@@ -1,0 +1,16 @@
+services:
+  ggs:
+    image: ghcr.io/kwzwk/ggs:latest
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/data
+    environment:
+      # Public hostname(s) the reverse proxy forwards, comma-separated.
+      GGS_ALLOWED_HOSTS: "*"
+      # Set when the app is served under a sub-path, e.g. /lernplan.
+      GGS_BASE_PATH: ""
+      # Set to "false" only if you use the app over plain http.
+      GGS_HTTPS_ONLY: "true"
