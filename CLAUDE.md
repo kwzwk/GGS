@@ -1,8 +1,7 @@
 # CLAUDE.md
 
-> **Status: draft.** This file captures what we know about the project so far and
-> the open questions still to answer. Sections marked _TBD_ are filled in as
-> decisions are made.
+> This file is the product spec and working guide for the project. Keep it
+> current: record new decisions in the decisions log.
 
 ## Project
 
@@ -11,8 +10,8 @@
 **One-line goal:** A web app that Kai self-hosts in a single, simple Docker
 container and exposes through an existing reverse proxy.
 
-**Users:** mainly parents of primary-school children (assumed: Grundschule
-Geyen; to confirm).
+**Users:** mainly parents of children at the Grundschule (primary school)
+in Geyen, Klasse 1–4.
 
 **Core idea:** each week a parent uploads screenshots/photos of the work their
 child was assigned at school. The app analyses them (subject, topic, task type,
@@ -120,6 +119,8 @@ The admin (Kai) manages the instance from an admin area:
   - the admin page shows whether Ollama is currently reachable and how many
     jobs are waiting;
   - jobs retry with backoff and survive app restarts.
+- **No Wake-on-LAN.** Kai switches the GPU PC on manually; the app only
+  waits for it.
 
 ## Tech stack
 
@@ -145,6 +146,15 @@ Chosen by Claude (Kai asked for "what makes sense"); change here if needed.
 - **Container:** one image, run with `gunicorn` (web) plus the job worker,
   started from a single entrypoint. Uploads and the database live in
   `/data`.
+- **Uploads:** images (JPEG, PNG, HEIC from phones) and PDFs. PDF pages are
+  converted to images before analysis.
+- **Layout:** phone-first responsive design (parents photograph worksheets
+  on their phones), works on desktop too.
+- **Notifications:** none in v1. Parents check the app for their plan.
+- **Accounts:** one parent per account in v1; no shared access to children
+  between two parent accounts.
+- **Builds:** GitHub Actions builds the image and publishes it to GHCR
+  (`ghcr.io/kwzwk/ggs`).
 - **Target platform:** `linux/amd64` (Kai's server is a normal x86 machine).
   No ARM build needed.
 
@@ -166,25 +176,7 @@ Chosen by Claude (Kai asked for "what makes sense"); change here if needed.
 
 ## Open questions
 
-### Analysis and plans
-1. Should the app be able to wake the GPU PC (Wake-on-LAN) when jobs are
-   waiting, or do you switch it on yourself?
-
-### Users and access
-2. Should two parents be able to share access to the same children?
-
-### Data
-3. Is SQLite in the volume acceptable, or must it use an existing database?
-4. Should PDFs be accepted as well as images?
-
-### Interface
-5. Mainly used on phones (likely, for taking photos), desktops, or both?
-6. Any notifications needed (e.g. "your plan is ready", weekly upload
-    reminder)?
-
-### Tech and operations
-7. Where will images be built: locally, or by GitHub Actions publishing to a
-    registry (e.g. GHCR)?
+None right now. Add new ones here as they come up.
 
 ## Decisions log
 
@@ -210,6 +202,8 @@ Chosen by Claude (Kai asked for "what makes sense"); change here if needed.
 | 2026-10-09 | Stack: Django + HTMX + SQLite, background job worker in the same container | Claude, at Kai's request |
 | 2026-10-09 | Forgotten passwords are reset by the admin (no email reset) | Kai |
 | 2026-10-09 | Server is x86; build images for linux/amd64 only | Kai |
+| 2026-10-09 | SQLite in /data; PDFs accepted; phone-first layout; no notifications in v1; one parent per account; GitHub Actions publishes to GHCR | Defaults proposed by Claude, accepted by Kai |
+| 2026-10-09 | No Wake-on-LAN; Kai switches the GPU PC on manually | Kai |
 | 2026-10-09 | Ollama runs on a separate PC with an RTX 4070 that is not always on; jobs queue until it is reachable | Kai |
 
 ## Working conventions for Claude
