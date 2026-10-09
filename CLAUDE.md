@@ -43,7 +43,8 @@ child-facing output is designed to be printed.
   hard-coding it.
 - **Printable:** the plan and its exercises render as a clean, print-friendly
   page (A4, black and white friendly, large readable font for children),
-  e.g. one page per day.
+  e.g. one page per day. No answer key in the printout (primary-school
+  level; parents can check without one).
 - Each day lists **concrete exercises** (subject, topic, what to do,
   estimated minutes).
 - **Spaced repetition:** topics come back at growing intervals (e.g. same
@@ -103,6 +104,31 @@ The admin (Kai) manages the instance from an admin area:
 - An env var (e.g. `OLLAMA_URL`) can seed the default on first start; the
   admin setting overrides it.
 
+## Tech stack
+
+Chosen by Claude (Kai asked for "what makes sense"); change here if needed.
+
+- **Python + Django**, server-rendered templates with **HTMX** for small
+  interactive bits. Django gives login/registration, an admin site (useful
+  for account approval and the library review queue), translations and
+  database migrations out of the box.
+- **SQLite** stored in the `/data` volume. No separate database container.
+- **Background jobs:** screenshot analysis and plan generation can take
+  minutes on Ollama, so they run as jobs in a simple database-backed queue
+  processed by a worker inside the same container. The page shows progress
+  and the parent can come back later.
+- **Ollama** called over its HTTP API with plain `httpx`/`requests`; no
+  heavy LLM frameworks.
+- **Printing** via print-optimised HTML/CSS (the browser's print/save as
+  PDF). Server-side PDF generation only if that proves insufficient.
+- **Languages:** German is the default and primary language; English is
+  available as a second language (Django i18n). All user-facing text goes
+  through translations from the start. Generated plans and exercises are
+  written in the parent's chosen language (German by default).
+- **Container:** one image, run with `gunicorn` (web) plus the job worker,
+  started from a single entrypoint. Uploads and the database live in
+  `/data`.
+
 ## Known constraints
 
 - **Self-hosted.** Runs on Kai's own infrastructure, not a managed cloud.
@@ -125,29 +151,25 @@ The admin (Kai) manages the instance from an admin area:
 1. Which Ollama models are you running or planning to run (e.g. a vision
    model such as Qwen2.5-VL, Llama 3.2 Vision or Gemma 3), and on what
    hardware (GPU)? Small models may struggle with handwriting.
-2. Should the printout include an answer key (on a separate page for the
-   parent)?
 
 ### Users and access
-3. Should two parents be able to share access to the same children?
-4. How does a parent recover a forgotten password: the admin resets it, or
+2. Should two parents be able to share access to the same children?
+3. How does a parent recover a forgotten password: the admin resets it, or
    self-service by email (which needs SMTP settings)?
 
 ### Data
-5. Is SQLite in the volume acceptable, or must it use an existing database?
-6. Should PDFs be accepted as well as images?
+4. Is SQLite in the volume acceptable, or must it use an existing database?
+5. Should PDFs be accepted as well as images?
 
 ### Interface
-7. Language(s): German only, or German and English?
-8. Mainly used on phones (likely, for taking photos), desktops, or both?
-9. Any notifications needed (e.g. "your plan is ready", weekly upload
+6. Mainly used on phones (likely, for taking photos), desktops, or both?
+7. Any notifications needed (e.g. "your plan is ready", weekly upload
     reminder)?
 
 ### Tech and operations
-10. Any preferred language or framework, or a stack you want to avoid?
-11. Where will images be built: locally, or by GitHub Actions publishing to a
+8. Where will images be built: locally, or by GitHub Actions publishing to a
     registry (e.g. GHCR)?
-12. Target architecture: amd64, arm64 (e.g. Raspberry Pi), or both?
+9. Target architecture: amd64, arm64 (e.g. Raspberry Pi), or both?
 
 ## Decisions log
 
@@ -168,6 +190,9 @@ The admin (Kai) manages the instance from an admin area:
 | 2026-10-09 | Admin approves exercises before they enter the shared library | Kai |
 | 2026-10-09 | Registration requires admin approval | Kai |
 | 2026-10-09 | Uploads are kept; the admin decides what to delete (no auto-deletion in v1) | Kai |
+| 2026-10-09 | UI in German (default) and English | Kai |
+| 2026-10-09 | No answer key on printouts | Kai |
+| 2026-10-09 | Stack: Django + HTMX + SQLite, background job worker in the same container | Claude, at Kai's request |
 
 ## Working conventions for Claude
 
