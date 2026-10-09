@@ -86,6 +86,9 @@ The admin (Kai) manages the instance from an admin area:
 
 - **Registrations:** new parent accounts start as *pending* and can only log
   in after the admin approves them.
+- **Password resets:** there is no self-service reset and no email. A parent
+  who forgot their password asks the admin, who sets a temporary password
+  that the parent must change at next login.
 - **Exercise library:** review queue for submitted exercises; approve,
   reject, edit or remove entries.
 - **Data deletion:** uploaded screenshots are kept by default. The admin can
@@ -167,22 +170,20 @@ Chosen by Claude (Kai asked for "what makes sense"); change here if needed.
 
 ### Users and access
 2. Should two parents be able to share access to the same children?
-3. How does a parent recover a forgotten password: the admin resets it, or
-   self-service by email (which needs SMTP settings)?
 
 ### Data
-4. Is SQLite in the volume acceptable, or must it use an existing database?
-5. Should PDFs be accepted as well as images?
+3. Is SQLite in the volume acceptable, or must it use an existing database?
+4. Should PDFs be accepted as well as images?
 
 ### Interface
-6. Mainly used on phones (likely, for taking photos), desktops, or both?
-7. Any notifications needed (e.g. "your plan is ready", weekly upload
+5. Mainly used on phones (likely, for taking photos), desktops, or both?
+6. Any notifications needed (e.g. "your plan is ready", weekly upload
     reminder)?
 
 ### Tech and operations
-8. Where will images be built: locally, or by GitHub Actions publishing to a
+7. Where will images be built: locally, or by GitHub Actions publishing to a
     registry (e.g. GHCR)?
-9. Target architecture: amd64, arm64 (e.g. Raspberry Pi), or both?
+8. Target architecture: amd64, arm64 (e.g. Raspberry Pi), or both?
 
 ## Decisions log
 
@@ -206,6 +207,7 @@ Chosen by Claude (Kai asked for "what makes sense"); change here if needed.
 | 2026-10-09 | UI in German (default) and English | Kai |
 | 2026-10-09 | No answer key on printouts | Kai |
 | 2026-10-09 | Stack: Django + HTMX + SQLite, background job worker in the same container | Claude, at Kai's request |
+| 2026-10-09 | Forgotten passwords are reset by the admin (no email reset) | Kai |
 | 2026-10-09 | Ollama runs on a separate PC with an RTX 4070 that is not always on; jobs queue until it is reachable | Kai |
 
 ## Working conventions for Claude
