@@ -6,7 +6,7 @@
 
 ## Project
 
-**Name:** Geyen Grund Schule (GGS)
+**Name:** Geyen Grundschule (GGS)
 
 **One-line goal:** A web app that Kai self-hosts in a single, simple Docker
 container and exposes through an existing reverse proxy.
