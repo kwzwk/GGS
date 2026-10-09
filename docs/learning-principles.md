@@ -130,6 +130,22 @@ Minutes scale down if the cap is lowered.
 Friday replaces the main task with a mixed quiz and the child's chosen
 "Forscherfrage".
 
+## Adjustments for Klasse 1
+
+Example: [example-weekly-plan-klasse1.md](example-weekly-plan-klasse1.md).
+
+- **No reading required.** Children are only starting to read, so every
+  task is read aloud by the parent and answered by speaking, showing,
+  drawing, using objects or tracing.
+- **Shorter sessions:** 10–15 minutes in the first weeks, with 2-minute
+  blocks around a 5–7 minute main task. The cap is a maximum.
+- **Sounds before letters, objects before digits:** a letter is introduced
+  through its sound and words that start with it, then traced; numbers
+  through real objects and dice patterns, then written.
+- **Faces instead of the traffic light** for self-rating (😀 😐 😟).
+- **No older history in week 1:** the warm-up recalls the school day and
+  earlier days of the same week.
+
 ## What we deliberately leave out
 
 - **Learning styles** (visual/auditory learners): matching teaching to a

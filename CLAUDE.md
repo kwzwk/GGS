@@ -38,9 +38,9 @@ child-facing output is designed to be printed.
 Plans follow the evidence-based principles in
 [docs/learning-principles.md](docs/learning-principles.md) (retrieval
 practice, spacing, interleaving, self-explanation, autonomy, curiosity) and
-the daily session template defined there. A worked example is in
-[docs/example-weekly-plan.md](docs/example-weekly-plan.md).
-
+the daily session template defined there. Worked examples:
+[Klasse 2](docs/example-weekly-plan.md) and
+[Klasse 1, first school week](docs/example-weekly-plan-klasse1.md).
 
 - **Mon–Fri schedule**, one learning session per day.
 - **Each day's session is at most 20 minutes** in total by default. The
