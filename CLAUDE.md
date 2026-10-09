@@ -71,9 +71,26 @@ child-facing output is designed to be printed.
   database, available to all families on the instance, tagged by **class
   level (1–4)**, subject and topic. Later plans for any child reuse matching
   library exercises before generating new ones.
+- **Admin approval:** a parent-validated exercise is only *submitted* to the
+  library. The admin reviews it and approves (or rejects) it before it
+  becomes visible to other families. Until then it is usable only by the
+  family that created it.
 - Library entries must contain **no personal data**: no child names, no
   original screenshots. The link back to a family's worksheet stays private
   to that family.
+
+## Admin role
+
+The admin (Kai) manages the instance from an admin area:
+
+- **Registrations:** new parent accounts start as *pending* and can only log
+  in after the admin approves them.
+- **Exercise library:** review queue for submitted exercises; approve,
+  reject, edit or remove entries.
+- **Data deletion:** uploaded screenshots are kept by default. The admin can
+  delete uploads (and other data) later, e.g. per family or older than a
+  given date. No automatic deletion in v1.
+- **LLM backend settings** (see below).
 
 ## LLM backend
 
@@ -108,34 +125,29 @@ child-facing output is designed to be printed.
 1. Which Ollama models are you running or planning to run (e.g. a vision
    model such as Qwen2.5-VL, Llama 3.2 Vision or Gemma 3), and on what
    hardware (GPU)? Small models may struggle with handwriting.
-2. Does a validated exercise go straight into the shared library, or does
-   the admin approve it first? Can the admin edit or remove entries?
-3. Should the printout include an answer key (on a separate page for the
+2. Should the printout include an answer key (on a separate page for the
    parent)?
 
 ### Users and access
-4. Should two parents be able to share access to the same children?
-5. Is registration open to anyone, or invite-only / admin-approved?
-6. Besides the LLM settings, what else should the admin manage (approving
-   registrations, resetting passwords, deleting accounts)?
+3. Should two parents be able to share access to the same children?
+4. How does a parent recover a forgotten password: the admin resets it, or
+   self-service by email (which needs SMTP settings)?
 
 ### Data
-7. Screenshots of children's work are personal data (GDPR/DSGVO). How long
-   should uploads be kept: deleted after analysis, after the week, or kept?
-8. Is SQLite in the volume acceptable, or must it use an existing database?
-9. Should PDFs be accepted as well as images?
+5. Is SQLite in the volume acceptable, or must it use an existing database?
+6. Should PDFs be accepted as well as images?
 
 ### Interface
-10. Language(s): German only, or German and English?
-11. Mainly used on phones (likely, for taking photos), desktops, or both?
-12. Any notifications needed (e.g. "your plan is ready", weekly upload
+7. Language(s): German only, or German and English?
+8. Mainly used on phones (likely, for taking photos), desktops, or both?
+9. Any notifications needed (e.g. "your plan is ready", weekly upload
     reminder)?
 
 ### Tech and operations
-13. Any preferred language or framework, or a stack you want to avoid?
-14. Where will images be built: locally, or by GitHub Actions publishing to a
+10. Any preferred language or framework, or a stack you want to avoid?
+11. Where will images be built: locally, or by GitHub Actions publishing to a
     registry (e.g. GHCR)?
-15. Target architecture: amd64, arm64 (e.g. Raspberry Pi), or both?
+12. Target architecture: amd64, arm64 (e.g. Raspberry Pi), or both?
 
 ## Decisions log
 
@@ -153,6 +165,9 @@ child-facing output is designed to be printed.
 | 2026-10-09 | Exercise library is shared across all families, tagged by class level 1–4 | Kai |
 | 2026-10-09 | Children never use the app; parents print plans and enter the child's rating | Kai |
 | 2026-10-09 | 20 min/day is the default cap; make it adjustable later | Kai |
+| 2026-10-09 | Admin approves exercises before they enter the shared library | Kai |
+| 2026-10-09 | Registration requires admin approval | Kai |
+| 2026-10-09 | Uploads are kept; the admin decides what to delete (no auto-deletion in v1) | Kai |
 
 ## Working conventions for Claude
 
