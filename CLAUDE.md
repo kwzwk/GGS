@@ -145,6 +145,8 @@ Chosen by Claude (Kai asked for "what makes sense"); change here if needed.
 - **Container:** one image, run with `gunicorn` (web) plus the job worker,
   started from a single entrypoint. Uploads and the database live in
   `/data`.
+- **Target platform:** `linux/amd64` (Kai's server is a normal x86 machine).
+  No ARM build needed.
 
 ## Known constraints
 
@@ -183,7 +185,6 @@ Chosen by Claude (Kai asked for "what makes sense"); change here if needed.
 ### Tech and operations
 7. Where will images be built: locally, or by GitHub Actions publishing to a
     registry (e.g. GHCR)?
-8. Target architecture: amd64, arm64 (e.g. Raspberry Pi), or both?
 
 ## Decisions log
 
@@ -208,6 +209,7 @@ Chosen by Claude (Kai asked for "what makes sense"); change here if needed.
 | 2026-10-09 | No answer key on printouts | Kai |
 | 2026-10-09 | Stack: Django + HTMX + SQLite, background job worker in the same container | Claude, at Kai's request |
 | 2026-10-09 | Forgotten passwords are reset by the admin (no email reset) | Kai |
+| 2026-10-09 | Server is x86; build images for linux/amd64 only | Kai |
 | 2026-10-09 | Ollama runs on a separate PC with an RTX 4070 that is not always on; jobs queue until it is reachable | Kai |
 
 ## Working conventions for Claude
