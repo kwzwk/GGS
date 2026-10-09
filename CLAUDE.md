@@ -35,6 +35,13 @@ child-facing output is designed to be printed.
 
 ## Study plan rules
 
+Plans follow the evidence-based principles in
+[docs/learning-principles.md](docs/learning-principles.md) (retrieval
+practice, spacing, interleaving, self-explanation, autonomy, curiosity) and
+the daily session template defined there. A worked example is in
+[docs/example-weekly-plan.md](docs/example-weekly-plan.md).
+
+
 - **Mon–Fri schedule**, one learning session per day.
 - **Each day's session is at most 20 minutes** in total by default. The
   generator must budget minutes per exercise and never exceed the cap. The
@@ -203,6 +210,7 @@ None right now. Add new ones here as they come up.
 | 2026-10-09 | Forgotten passwords are reset by the admin (no email reset) | Kai |
 | 2026-10-09 | Server is x86; build images for linux/amd64 only | Kai |
 | 2026-10-09 | SQLite in /data; PDFs accepted; phone-first layout; no notifications in v1; one parent per account; GitHub Actions publishes to GHCR | Defaults proposed by Claude, accepted by Kai |
+| 2026-10-09 | Plans follow docs/learning-principles.md: retrieval, spacing, interleaving, self-explanation, autonomy and curiosity | Kai asked for science-backed plans |
 | 2026-10-09 | No Wake-on-LAN; Kai switches the GPU PC on manually | Kai |
 | 2026-10-09 | Ollama runs on a separate PC with an RTX 4070 that is not always on; jobs queue until it is reachable | Kai |
 
