@@ -103,6 +103,20 @@ The admin (Kai) manages the instance from an admin area:
   should list the models Ollama has installed and offer a connection test.
 - An env var (e.g. `OLLAMA_URL`) can seed the default on first start; the
   admin setting overrides it.
+- **Hardware:** Ollama runs on a **separate PC with an RTX 4070 (12 GB
+  VRAM)**, reached over the LAN. Models must fit in 12 GB, so roughly 7–12B
+  parameter models at 4-bit quantisation. Sensible starting points: a
+  vision model such as `qwen2.5vl:7b` (good at reading text/handwriting) or
+  `gemma3:12b` (vision plus good German). Load one model at a time.
+- **The GPU PC is not always on.** The app must treat Ollama as
+  intermittently available:
+  - uploads are always accepted and stored; analysis/plan jobs wait in the
+    queue until Ollama is reachable, then run automatically;
+  - the parent sees a clear status ("waiting for the analysis server")
+    instead of an error;
+  - the admin page shows whether Ollama is currently reachable and how many
+    jobs are waiting;
+  - jobs retry with backoff and survive app restarts.
 
 ## Tech stack
 
@@ -148,9 +162,8 @@ Chosen by Claude (Kai asked for "what makes sense"); change here if needed.
 ## Open questions
 
 ### Analysis and plans
-1. Which Ollama models are you running or planning to run (e.g. a vision
-   model such as Qwen2.5-VL, Llama 3.2 Vision or Gemma 3), and on what
-   hardware (GPU)? Small models may struggle with handwriting.
+1. Should the app be able to wake the GPU PC (Wake-on-LAN) when jobs are
+   waiting, or do you switch it on yourself?
 
 ### Users and access
 2. Should two parents be able to share access to the same children?
@@ -193,6 +206,7 @@ Chosen by Claude (Kai asked for "what makes sense"); change here if needed.
 | 2026-10-09 | UI in German (default) and English | Kai |
 | 2026-10-09 | No answer key on printouts | Kai |
 | 2026-10-09 | Stack: Django + HTMX + SQLite, background job worker in the same container | Claude, at Kai's request |
+| 2026-10-09 | Ollama runs on a separate PC with an RTX 4070 that is not always on; jobs queue until it is reachable | Kai |
 
 ## Working conventions for Claude
 
