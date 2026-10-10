@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "core",
+    "accounts",
+    "children",
 ]
 
 MIDDLEWARE = [
@@ -53,11 +55,16 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "accounts.middleware.ForcePasswordChangeMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
 ROOT_URLCONF = "ggs.urls"
+
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "children:list"
+LOGOUT_REDIRECT_URL = "home"
 WSGI_APPLICATION = "ggs.wsgi.application"
 
 TEMPLATES = [

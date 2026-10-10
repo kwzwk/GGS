@@ -1,21 +1,273 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Copyright (C) 2026 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-10 00:11+0200\n"
+"POT-Creation-Date: 2026-10-10 12:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: accounts/admin.py:41
+msgid "Approve selected accounts"
+msgstr "Ausgewählte Konten freigeben"
+
+#: accounts/admin.py:46
+#, python-format
+msgid "%(count)d account approved."
+msgid_plural "%(count)d accounts approved."
+msgstr[0] "%(count)d Konto freigegeben."
+msgstr[1] "%(count)d Konten freigegeben."
+
+#: accounts/admin.py:51
+msgid "Block selected accounts"
+msgstr "Ausgewählte Konten sperren"
+
+#: accounts/admin.py:56
+#, python-format
+msgid "%(count)d account blocked."
+msgid_plural "%(count)d accounts blocked."
+msgstr[0] "%(count)d Konto gesperrt."
+msgstr[1] "%(count)d Konten gesperrt."
+
+#: accounts/admin.py:61
+msgid "Reset password (temporary password)"
+msgstr "Passwort zurücksetzen (vorläufiges Passwort)"
+
+#: accounts/admin.py:73
+#, python-format
+msgid ""
+"Temporary password for %(username)s: %(password)s. They must choose a new "
+"password after logging in."
+msgstr ""
+"Vorläufiges Passwort für %(username)s: %(password)s. Nach der Anmeldung muss"
+" ein neues Passwort gewählt werden."
+
+#: accounts/apps.py:7
+msgid "Accounts"
+msgstr "Konten"
+
+#: accounts/forms.py:11
+msgid "Email (optional)"
+msgstr "E-Mail (optional)"
+
+#: accounts/forms.py:13
+msgid "Only so the admin can reach you. We don't send emails."
+msgstr "Nur damit die Verwaltung Sie erreichen kann. Wir verschicken keine E-Mails."
+
+#: accounts/forms.py:33
+msgid "Your account is waiting for approval by the admin. Please try again later."
+msgstr ""
+"Ihr Konto wartet auf die Freigabe durch die Verwaltung. Bitte versuchen Sie "
+"es später noch einmal."
+
+#: accounts/models.py:13
+msgid "must change password"
+msgstr "muss Passwort ändern"
+
+#: accounts/models.py:15
+msgid "Set after the admin assigns a temporary password."
+msgstr "Wird gesetzt, wenn die Verwaltung ein vorläufiges Passwort vergibt."
+
+#: accounts/models.py:19
+msgid "profile"
+msgstr "Profil"
+
+#: accounts/models.py:20
+msgid "profiles"
+msgstr "Profile"
+
+#: accounts/templates/accounts/login.html:3
+#: accounts/templates/accounts/login.html:5
+#: accounts/templates/accounts/login.html:10
+#: accounts/templates/accounts/register_done.html:7
+#: core/templates/core/home.html:7
+msgid "Log in"
+msgstr "Anmelden"
+
+#: accounts/templates/accounts/login.html:12
+msgid "Forgot your password? Ask the admin to set a temporary one."
+msgstr "Passwort vergessen? Bitten Sie die Verwaltung um ein vorläufiges Passwort."
+
+#: accounts/templates/accounts/login.html:13
+msgid "No account yet?"
+msgstr "Noch kein Konto?"
+
+#: accounts/templates/accounts/login.html:13
+#: accounts/templates/accounts/register.html:3
+#: accounts/templates/accounts/register.html:5
+#: accounts/templates/accounts/register.html:10 core/templates/core/home.html:8
+msgid "Create account"
+msgstr "Konto erstellen"
+
+#: accounts/templates/accounts/password_change.html:3
+#: accounts/templates/accounts/password_change.html:5
+msgid "Change password"
+msgstr "Passwort ändern"
+
+#: accounts/templates/accounts/password_change.html:7
+msgid ""
+"You are using a temporary password. Please choose your own password to "
+"continue."
+msgstr ""
+"Sie verwenden ein vorläufiges Passwort. Bitte wählen Sie ein eigenes "
+"Passwort, um fortzufahren."
+
+#: accounts/templates/accounts/password_change.html:12
+msgid "Save password"
+msgstr "Passwort speichern"
+
+#: accounts/templates/accounts/password_change_done.html:3
+#: accounts/templates/accounts/password_change_done.html:5
+msgid "Password changed"
+msgstr "Passwort geändert"
+
+#: accounts/templates/accounts/password_change_done.html:6
+msgid "Your new password is saved."
+msgstr "Ihr neues Passwort ist gespeichert."
+
+#: accounts/templates/accounts/password_change_done.html:7
+msgid "Continue"
+msgstr "Weiter"
+
+#: accounts/templates/accounts/register.html:6
+msgid "After you register, the admin approves your account. Then you can log in."
+msgstr ""
+"Nach der Registrierung gibt die Verwaltung Ihr Konto frei. Danach können Sie"
+" sich anmelden."
+
+#: accounts/templates/accounts/register_done.html:3
+msgid "Account created"
+msgstr "Konto erstellt"
+
+#: accounts/templates/accounts/register_done.html:5
+msgid "Thank you!"
+msgstr "Vielen Dank!"
+
+#: accounts/templates/accounts/register_done.html:6
+msgid ""
+"Your account has been created and is waiting for approval by the admin. You "
+"can log in once it has been approved."
+msgstr ""
+"Ihr Konto wurde erstellt und wartet auf die Freigabe durch die Verwaltung. "
+"Sobald es freigegeben ist, können Sie sich anmelden."
+
+#: children/apps.py:7
+msgid "Children"
+msgstr "Kinder"
+
+#: children/models.py:8
+msgid "Class 1"
+msgstr "Klasse 1"
+
+#: children/models.py:9
+msgid "Class 2"
+msgstr "Klasse 2"
+
+#: children/models.py:10
+msgid "Class 3"
+msgstr "Klasse 3"
+
+#: children/models.py:11
+msgid "Class 4"
+msgstr "Klasse 4"
+
+#: children/models.py:17
+msgid "parent"
+msgstr "Elternteil"
+
+#: children/models.py:20
+msgid "first name"
+msgstr "Vorname"
+
+#: children/models.py:22
+msgid "Shown on the printed plan. A first name or nickname is enough."
+msgstr "Steht auf dem ausgedruckten Plan. Ein Vorname oder Spitzname reicht."
+
+#: children/models.py:24
+msgid "class"
+msgstr "Klasse"
+
+#: children/models.py:29
+msgid "child"
+msgstr "Kind"
+
+#: children/models.py:30
+msgid "children"
+msgstr "Kinder"
+
+#: children/templates/children/delete.html:3
+#: children/templates/children/delete.html:5
+msgid "Remove child"
+msgstr "Kind entfernen"
+
+#: children/templates/children/delete.html:6
+#, python-format
+msgid "Remove %(name)s? All of %(name)s's data in this app will be deleted."
+msgstr "%(name)s entfernen? Alle Daten von %(name)s in dieser App werden gelöscht."
+
+#: children/templates/children/delete.html:9
+#: children/templates/children/list.html:16
+msgid "Remove"
+msgstr "Entfernen"
+
+#: children/templates/children/delete.html:10
+#: children/templates/children/form.html:10
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: children/templates/children/form.html:3 children/templates/children/form.html:5
+msgid "Edit child"
+msgstr "Kind bearbeiten"
+
+#: children/templates/children/form.html:3 children/templates/children/form.html:5
+#: children/templates/children/list.html:24
+msgid "Add child"
+msgstr "Kind hinzufügen"
+
+#: children/templates/children/form.html:9
+msgid "Save"
+msgstr "Speichern"
+
+#: children/templates/children/list.html:3 children/templates/children/list.html:5
+#: templates/base.html:23
+msgid "My children"
+msgstr "Meine Kinder"
+
+#: children/templates/children/list.html:15
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: children/templates/children/list.html:22
+msgid "Add your child to get started. You can add several children."
+msgstr ""
+"Fügen Sie Ihr Kind hinzu, um loszulegen. Sie können mehrere Kinder "
+"hinzufügen."
+
+#: children/views.py:26
+#, python-format
+msgid "%(name)s was added."
+msgstr "%(name)s wurde hinzugefügt."
+
+#: children/views.py:37
+msgid "Changes saved."
+msgstr "Änderungen gespeichert."
+
+#: children/views.py:47
+#, python-format
+msgid "%(name)s was removed."
+msgstr "%(name)s wurde entfernt."
+
 #: core/templates/core/home.html:4
 msgid "Welcome"
 msgstr "Willkommen"
@@ -28,10 +280,22 @@ msgstr ""
 "Laden Sie die Arbeitsblätter Ihres Kindes hoch und erhalten Sie für jeden "
 "Schultag einen kurzen Lernplan zum Ausdrucken."
 
-#: core/templates/core/home.html:6
-msgid "This app is being set up. Sign-in will be available soon."
-msgstr "Diese App wird gerade eingerichtet. Die Anmeldung ist bald verfügbar."
-
 #: templates/base.html:6 templates/base.html:11
 msgid "Study plans"
 msgstr "Lernpläne"
+
+#: templates/base.html:24
+msgid "Admin"
+msgstr "Verwaltung"
+
+#: templates/base.html:25
+msgid "Password"
+msgstr "Passwort"
+
+#: templates/base.html:28
+msgid "Log out"
+msgstr "Abmelden"
+
+#~ msgid "This app is being set up. Sign-in will be available soon."
+#~ msgstr "Diese App wird gerade eingerichtet. Die Anmeldung ist bald verfügbar."
+

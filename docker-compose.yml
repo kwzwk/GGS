@@ -13,6 +13,9 @@ services:
       GGS_BASE_PATH: ""
       # Set to "false" only if you use the app over plain http.
       GGS_HTTPS_ONLY: "true"
+      # Fill in before the first start to create the admin account (ignored once one exists).
+      GGS_ADMIN_USERNAME: ""
+      GGS_ADMIN_PASSWORD: ""
     labels:
       # Lets Watchtower (below) update this container.
       com.centurylinklabs.watchtower.enable: "true"
