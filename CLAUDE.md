@@ -213,6 +213,7 @@ None right now. Add new ones here as they come up.
 | 2026-10-09 | Plans follow docs/learning-principles.md: retrieval, spacing, interleaving, self-explanation, autonomy and curiosity | Kai asked for science-backed plans |
 | 2026-10-09 | No Wake-on-LAN; Kai switches the GPU PC on manually | Kai |
 | 2026-10-09 | Ollama runs on a separate PC with an RTX 4070 that is not always on; jobs queue until it is reachable | Kai |
+| 2026-10-10 | Compose file includes Watchtower (maintained nickfedor fork) to auto-update the app when CI publishes a new image | Kai |
 
 ## Working conventions for Claude
 

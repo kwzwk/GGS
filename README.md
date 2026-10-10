@@ -19,9 +19,23 @@ generated secret key) in `./data`. Back up that folder to back up the app.
 Point your reverse proxy at `http://<server>:8000`. It must pass the
 `Host` and `X-Forwarded-Proto` headers (most proxies do by default).
 
-The image is published to `ghcr.io/kwzwk/ggs:latest` on every push to
-`main`. GHCR packages start out private: either make the package public in
-its GitHub settings, or `docker login ghcr.io` on the server first.
+## Automatic builds and updates
+
+1. Every push to `main` runs `.github/workflows/ci.yml`: tests, then a new
+   image is built and published as `ghcr.io/kwzwk/ggs:latest`.
+2. The compose file includes **Watchtower**, which checks for a new
+   `latest` image every 5 minutes, pulls it and restarts the app (data in
+   `./data` is kept). It only updates containers with the
+   `com.centurylinklabs.watchtower.enable` label, so your other containers
+   are left alone.
+
+GHCR packages start out private. Either make the package public (GitHub →
+your profile → Packages → `ggs` → Package settings → Change visibility),
+or run `docker login ghcr.io` on the server with a token that has
+`read:packages` and uncomment the `config.json` line in the compose file so
+Watchtower can pull too.
+
+To build the image yourself instead: `docker build -t ghcr.io/kwzwk/ggs:latest .`
 
 ## Configuration
 
