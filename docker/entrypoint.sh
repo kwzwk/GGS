@@ -12,6 +12,7 @@ if [ "$(id -u)" = "0" ]; then
 fi
 
 python manage.py migrate --noinput
+python manage.py ensure_admin
 
 if [ "$#" -gt 0 ]; then
     exec "$@"

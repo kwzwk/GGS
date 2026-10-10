@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "My children" %}{% endblock %}
+{% block content %}
+  <h1>{% translate "My children" %}</h1>
+  {% if children %}
+    <ul class="cards">
+      {% for child in children %}
+        <li class="card">
+          <div>
+            <strong>{{ child.name }}</strong>
+            <span class="muted">{{ child.get_class_level_display }}</span>
+          </div>
+          <div class="card-actions">
+            <a href="{% url 'children:update' child.pk %}">{% translate "Edit" %}</a>
+            <a href="{% url 'children:delete' child.pk %}">{% translate "Remove" %}</a>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>{% translate "Add your child to get started. You can add several children." %}</p>
+  {% endif %}
+  <p><a class="button" href="{% url 'children:create' %}">{% translate "Add child" %}</a></p>
+{% endblock %}

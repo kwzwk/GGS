@@ -4,8 +4,8 @@ A self-hosted web app for parents of primary-school children: upload the
 week's worksheets, get a short, printable study plan for every school day.
 See [CLAUDE.md](CLAUDE.md) for the full spec.
 
-> Status: early setup. The app starts and serves its landing page; accounts,
-> uploads and plans are being built.
+> Status: in development. Accounts and children work; uploads and plans are
+> being built.
 
 ## Run it
 
@@ -18,6 +18,22 @@ generated secret key) in `./data`. Back up that folder to back up the app.
 
 Point your reverse proxy at `http://<server>:8000`. It must pass the
 `Host` and `X-Forwarded-Proto` headers (most proxies do by default).
+
+## First start and accounts
+
+Set `GGS_ADMIN_USERNAME` and `GGS_ADMIN_PASSWORD` for the first start: the
+app creates that admin account if no admin exists yet (later changes to the
+variables are ignored). Alternatively run
+`docker compose exec ggs python manage.py createsuperuser`.
+
+- Parents register at `/accounts/register/`. New accounts are **pending**
+  until you approve them: open **Verwaltung → Benutzer** (`/admin/`), filter
+  by *Aktiv: Nein*, select the accounts and run **Ausgewählte Konten
+  freigeben**.
+- **Forgotten password:** select the account and run **Passwort
+  zurücksetzen**. The admin page shows a temporary password to pass on;
+  the parent must choose a new one after logging in.
+- **Ausgewählte Konten sperren** blocks an account again.
 
 ## Automatic builds and updates
 
@@ -45,6 +61,7 @@ To build the image yourself instead: `docker build -t ghcr.io/kwzwk/ggs:latest .
 | `GGS_BASE_PATH` | *(empty)* | Sub-path when not served at `/`, e.g. `/lernplan`. Works whether or not the proxy strips it. |
 | `GGS_HTTPS_ONLY` | `true` | Cookies only over HTTPS. Set `false` to use the app over plain http (e.g. directly on the LAN). |
 | `GGS_CSRF_TRUSTED_ORIGINS` | *(empty)* | Extra origins allowed to submit forms, e.g. `https://lernplan.example.org`. Usually not needed. |
+| `GGS_ADMIN_USERNAME` / `GGS_ADMIN_PASSWORD` | *(empty)* | Creates the first admin account on start if none exists. |
 | `GGS_SECRET_KEY` | generated | Generated once and stored in `/data/secret_key` if unset. |
 | `GGS_PORT` | `8000` | Port inside the container. |
 | `GGS_WEB_WORKERS` | `2` | Gunicorn worker processes. |

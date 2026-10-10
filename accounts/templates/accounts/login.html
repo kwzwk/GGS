@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Log in" %}{% endblock %}
+{% block content %}
+  <h1>{% translate "Log in" %}</h1>
+  <form method="post" class="form">
+    {% csrf_token %}
+    {{ form.as_div }}
+    <input type="hidden" name="next" value="{{ next }}">
+    <button type="submit" class="button">{% translate "Log in" %}</button>
+  </form>
+  <p class="note">{% translate "Forgot your password? Ask the admin to set a temporary one." %}</p>
+  <p class="note">{% translate "No account yet?" %} <a href="{% url 'register' %}">{% translate "Create account" %}</a></p>
+{% endblock %}

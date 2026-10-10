@@ -11,6 +11,15 @@ class HealthzTests(TestCase):
         self.assertEqual(response.json(), {"status": "ok"})
 
 
+class HomeTests(TestCase):
+    def test_logged_in_parent_goes_to_children(self):
+        from django.contrib.auth import get_user_model
+
+        user = get_user_model().objects.create_user("anna", password="x")
+        self.client.force_login(user)
+        self.assertRedirects(self.client.get("/"), "/children/")
+
+
 class LanguageTests(TestCase):
     def test_german_is_the_default(self):
         response = self.client.get("/")

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Remove child" %}{% endblock %}
+{% block content %}
+  <h1>{% translate "Remove child" %}</h1>
+  <p>{% blocktranslate with name=child.name %}Remove {{ name }}? All of {{ name }}'s data in this app will be deleted.{% endblocktranslate %}</p>
+  <form method="post" class="form">
+    {% csrf_token %}
+    <button type="submit" class="button danger">{% translate "Remove" %}</button>
+    <a href="{% url 'children:list' %}">{% translate "Cancel" %}</a>
+  </form>
+{% endblock %}
