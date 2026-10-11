@@ -1,0 +1,24 @@
+{% extends "admin/change_form.html" %}
+{% load i18n %}
+{% block form_top %}
+  <fieldset class="module aligned">
+    <h2>{% translate "Status" %}</h2>
+    <div class="form-row">
+      {% if ollama_ok %}
+        <p><strong style="color:#2f6f4f">● {% translate "Ollama is reachable." %}</strong></p>
+        <p>{% translate "Installed models:" %} {{ ollama_models|join:", "|default:"–" }}</p>
+        {% for model in configured_models %}
+          {% if model not in ollama_models %}
+            <p class="errornote">{% blocktranslate %}The model "{{ model }}" is not installed. Run "ollama pull {{ model }}" on the AI PC.{% endblocktranslate %}</p>
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        <p><strong style="color:#a3261b">● {% translate "Ollama is not reachable." %}</strong>
+          {% translate "That's fine while the AI PC is switched off: uploads wait and are analysed once it is back." %}</p>
+        {% if ollama_error %}<p class="help">{{ ollama_error }}</p>{% endif %}
+      {% endif %}
+      <p>{% blocktranslate %}Jobs waiting: {{ jobs_waiting }} · running: {{ jobs_running }} · failed: {{ jobs_failed }}{% endblocktranslate %}
+        · <a href="{% url 'admin:jobs_job_changelist' %}">{% translate "Show jobs" %}</a></p>
+    </div>
+  </fieldset>
+{% endblock %}

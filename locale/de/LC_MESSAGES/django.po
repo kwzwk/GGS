@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-10 12:54+0200\n"
+"POT-Creation-Date: 2026-10-11 07:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: accounts/admin.py:41
@@ -182,7 +182,7 @@ msgstr "Klasse 3"
 msgid "Class 4"
 msgstr "Klasse 4"
 
-#: children/models.py:17
+#: children/models.py:17 worksheets/admin.py:27
 msgid "parent"
 msgstr "Elternteil"
 
@@ -217,7 +217,7 @@ msgid "Remove %(name)s? All of %(name)s's data in this app will be deleted."
 msgstr "%(name)s entfernen? Alle Daten von %(name)s in dieser App werden gelöscht."
 
 #: children/templates/children/delete.html:9
-#: children/templates/children/list.html:16
+#: children/templates/children/list.html:17
 msgid "Remove"
 msgstr "Entfernen"
 
@@ -231,7 +231,7 @@ msgid "Edit child"
 msgstr "Kind bearbeiten"
 
 #: children/templates/children/form.html:3 children/templates/children/form.html:5
-#: children/templates/children/list.html:24
+#: children/templates/children/list.html:25
 msgid "Add child"
 msgstr "Kind hinzufügen"
 
@@ -240,15 +240,19 @@ msgid "Save"
 msgstr "Speichern"
 
 #: children/templates/children/list.html:3 children/templates/children/list.html:5
-#: templates/base.html:23
+#: templates/base.html:24 worksheets/templates/worksheets/week_list.html:5
 msgid "My children"
 msgstr "Meine Kinder"
 
-#: children/templates/children/list.html:15
+#: children/templates/children/list.html:15 worksheets/apps.py:7
+msgid "Worksheets"
+msgstr "Arbeitsblätter"
+
+#: children/templates/children/list.html:16
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: children/templates/children/list.html:22
+#: children/templates/children/list.html:23
 msgid "Add your child to get started. You can add several children."
 msgstr ""
 "Fügen Sie Ihr Kind hinzu, um loszulegen. Sie können mehrere Kinder "
@@ -280,21 +284,414 @@ msgstr ""
 "Laden Sie die Arbeitsblätter Ihres Kindes hoch und erhalten Sie für jeden "
 "Schultag einen kurzen Lernplan zum Ausdrucken."
 
-#: templates/base.html:6 templates/base.html:11
+#: jobs/admin.py:19
+msgid "Retry failed jobs"
+msgstr "Fehlgeschlagene Aufgaben erneut versuchen"
+
+#: jobs/admin.py:24
+#, python-format
+msgid "%(count)d job queued again."
+msgid_plural "%(count)d jobs queued again."
+msgstr[0] "%(count)d Aufgabe wieder eingereiht."
+msgstr[1] "%(count)d Aufgaben wieder eingereiht."
+
+#: jobs/apps.py:7
+msgid "Background jobs"
+msgstr "Hintergrundaufgaben"
+
+#: jobs/models.py:8
+msgid "queued"
+msgstr "wartend"
+
+#: jobs/models.py:9
+msgid "running"
+msgstr "läuft"
+
+#: jobs/models.py:10
+msgid "done"
+msgstr "erledigt"
+
+#: jobs/models.py:11
+msgid "failed"
+msgstr "fehlgeschlagen"
+
+#: jobs/models.py:13
+msgid "kind"
+msgstr "Art"
+
+#: jobs/models.py:14
+msgid "payload"
+msgstr "Daten"
+
+#: jobs/models.py:16
+msgid "status"
+msgstr "Status"
+
+#: jobs/models.py:18
+msgid "attempts"
+msgstr "Versuche"
+
+#: jobs/models.py:19
+msgid "run after"
+msgstr "frühestens ab"
+
+#: jobs/models.py:20
+msgid "last error"
+msgstr "letzter Fehler"
+
+# | msgid "Account created"
+#: jobs/models.py:21
+msgid "created"
+msgstr "erstellt"
+
+#: jobs/models.py:22
+msgid "started"
+msgstr "gestartet"
+
+#: jobs/models.py:23
+msgid "finished"
+msgstr "beendet"
+
+#: jobs/models.py:27
+msgid "job"
+msgstr "Aufgabe"
+
+#: jobs/models.py:28
+msgid "jobs"
+msgstr "Aufgaben"
+
+#: llm/apps.py:7
+msgid "AI server (Ollama)"
+msgstr "KI-Server (Ollama)"
+
+#: llm/models.py:11
+msgid "Ollama URL"
+msgstr "Ollama-Adresse"
+
+#: llm/models.py:13
+msgid "Address of the Ollama server on your network, e.g. http://192.168.1.50:11434"
+msgstr "Adresse des Ollama-Servers im Netzwerk, z. B. http://192.168.1.50:11434"
+
+#: llm/models.py:16
+msgid "model for reading worksheets"
+msgstr "Modell zum Lesen der Arbeitsblätter"
+
+#: llm/models.py:19
+msgid "A vision model installed in Ollama, e.g. qwen2.5vl:7b or gemma3:12b."
+msgstr "Ein in Ollama installiertes Bildmodell, z. B. qwen2.5vl:7b oder gemma3:12b."
+
+#: llm/models.py:22
+msgid "model for writing plans"
+msgstr "Modell zum Schreiben der Pläne"
+
+#: llm/models.py:25
+msgid "Leave empty to use the same model as for reading worksheets."
+msgstr "Leer lassen, um dasselbe Modell wie für die Arbeitsblätter zu nutzen."
+
+#: llm/models.py:28
+msgid "timeout (seconds)"
+msgstr "Zeitlimit (Sekunden)"
+
+#: llm/models.py:30
+msgid "How long one AI request may take. Loading a model can take a while."
+msgstr ""
+"Wie lange eine KI-Anfrage dauern darf. Das Laden eines Modells kann etwas "
+"dauern."
+
+#: llm/models.py:34
+msgid "last checked"
+msgstr "zuletzt geprüft"
+
+#: llm/models.py:35
+msgid "reachable at last check"
+msgstr "bei letzter Prüfung erreichbar"
+
+#: llm/models.py:38 llm/models.py:39 llm/models.py:42
+msgid "AI server settings"
+msgstr "KI-Server-Einstellungen"
+
+#: llm/templates/admin/llm/ollamasettings/change_form.html:5
+msgid "Status"
+msgstr "Status"
+
+#: llm/templates/admin/llm/ollamasettings/change_form.html:8
+msgid "Ollama is reachable."
+msgstr "Ollama ist erreichbar."
+
+#: llm/templates/admin/llm/ollamasettings/change_form.html:9
+msgid "Installed models:"
+msgstr "Installierte Modelle:"
+
+#: llm/templates/admin/llm/ollamasettings/change_form.html:12
+#, python-format
+msgid ""
+"The model \"%(model)s\" is not installed. Run \"ollama pull %(model)s\" on "
+"the AI PC."
+msgstr ""
+"Das Modell „%(model)s“ ist nicht installiert. Führen Sie „ollama pull "
+"%(model)s“ auf dem KI-PC aus."
+
+#: llm/templates/admin/llm/ollamasettings/change_form.html:16
+msgid "Ollama is not reachable."
+msgstr "Ollama ist nicht erreichbar."
+
+#: llm/templates/admin/llm/ollamasettings/change_form.html:17
+msgid ""
+"That's fine while the AI PC is switched off: uploads wait and are analysed "
+"once it is back."
+msgstr ""
+"Das ist in Ordnung, solange der KI-PC aus ist: Uploads warten und werden "
+"analysiert, sobald er wieder läuft."
+
+#: llm/templates/admin/llm/ollamasettings/change_form.html:20
+#, python-format
+msgid ""
+"Jobs waiting: %(jobs_waiting)s · running: %(jobs_running)s · failed: "
+"%(jobs_failed)s"
+msgstr ""
+"Wartende Aufgaben: %(jobs_waiting)s · laufend: %(jobs_running)s · "
+"fehlgeschlagen: %(jobs_failed)s"
+
+#: llm/templates/admin/llm/ollamasettings/change_form.html:21
+msgid "Show jobs"
+msgstr "Aufgaben anzeigen"
+
+#: templates/base.html:6 templates/base.html:12
 msgid "Study plans"
 msgstr "Lernpläne"
 
-#: templates/base.html:24
+#: templates/base.html:25
 msgid "Admin"
 msgstr "Verwaltung"
 
-#: templates/base.html:25
+#: templates/base.html:26
 msgid "Password"
 msgstr "Passwort"
 
-#: templates/base.html:28
+#: templates/base.html:29
 msgid "Log out"
 msgstr "Abmelden"
+
+#: worksheets/forms.py:32
+msgid "Week"
+msgstr "Woche"
+
+#: worksheets/forms.py:34
+msgid "Any day of the school week the work is for."
+msgstr "Ein beliebiger Tag der Schulwoche, für die die Aufgaben sind."
+
+#: worksheets/forms.py:37
+msgid "Photos or PDFs of the worksheets"
+msgstr "Fotos oder PDFs der Arbeitsblätter"
+
+#: worksheets/forms.py:38
+msgid "You can pick several files at once. Photos straight from the phone are fine."
+msgstr ""
+"Sie können mehrere Dateien auf einmal wählen. Fotos direkt vom Handy sind in"
+" Ordnung."
+
+#: worksheets/forms.py:52
+#, python-format
+msgid "Please upload at most %(count)d files at once."
+msgstr "Bitte höchstens %(count)d Dateien auf einmal hochladen."
+
+#: worksheets/forms.py:57
+#, python-format
+msgid "%(name)s is larger than %(size)d MB."
+msgstr "%(name)s ist größer als %(size)d MB."
+
+#: worksheets/models.py:9
+msgid "Maths"
+msgstr "Mathe"
+
+#: worksheets/models.py:10
+msgid "German"
+msgstr "Deutsch"
+
+#: worksheets/models.py:11
+msgid "General studies"
+msgstr "Sachunterricht"
+
+#: worksheets/models.py:12
+msgid "English"
+msgstr "Englisch"
+
+#: worksheets/models.py:13
+msgid "Other"
+msgstr "Sonstiges"
+
+#: worksheets/models.py:16
+msgid "easy"
+msgstr "leicht"
+
+#: worksheets/models.py:16
+msgid "medium"
+msgstr "mittel"
+
+#: worksheets/models.py:16
+msgid "hard"
+msgstr "schwer"
+
+#: worksheets/models.py:35
+msgid "week starting"
+msgstr "Woche ab"
+
+#: worksheets/models.py:42
+msgid "week"
+msgstr "Woche"
+
+#: worksheets/models.py:43
+msgid "weeks"
+msgstr "Wochen"
+
+#: worksheets/models.py:67
+msgid "upload"
+msgstr "Upload"
+
+#: worksheets/models.py:68
+msgid "uploads"
+msgstr "Uploads"
+
+#: worksheets/models.py:78
+msgid "Waiting for analysis"
+msgstr "Warten auf Analyse"
+
+#: worksheets/models.py:79
+msgid "Being analysed"
+msgstr "Wird analysiert"
+
+#: worksheets/models.py:80
+msgid "Analysed"
+msgstr "Analysiert"
+
+#: worksheets/models.py:81
+msgid "Analysis failed"
+msgstr "Analyse fehlgeschlagen"
+
+#: worksheets/models.py:95
+msgid "page"
+msgstr "Seite"
+
+#: worksheets/models.py:96
+msgid "pages"
+msgstr "Seiten"
+
+#: worksheets/templates/worksheets/upload.html:3
+#: worksheets/templates/worksheets/upload.html:6
+msgid "Upload worksheets"
+msgstr "Arbeitsblätter hochladen"
+
+#: worksheets/templates/worksheets/upload.html:5
+#: worksheets/templates/worksheets/week_detail.html:6
+#: worksheets/templates/worksheets/week_list.html:3
+#: worksheets/templates/worksheets/week_list.html:6
+#, python-format
+msgid "Worksheets for %(name)s"
+msgstr "Arbeitsblätter von %(name)s"
+
+#: worksheets/templates/worksheets/upload.html:7
+#, python-format
+msgid ""
+"Photograph or scan the work %(name)s was given this week. One photo per page"
+" works best: flat, well lit and the whole page in view."
+msgstr ""
+"Fotografieren oder scannen Sie die Aufgaben, die %(name)s diese Woche "
+"bekommen hat. Am besten ein Foto pro Seite: flach, gut beleuchtet und die "
+"ganze Seite im Bild."
+
+#: worksheets/templates/worksheets/upload.html:12
+msgid "Upload"
+msgstr "Hochladen"
+
+#: worksheets/templates/worksheets/week_detail.html:4
+#: worksheets/templates/worksheets/week_detail.html:7
+#: worksheets/templates/worksheets/week_list.html:13
+#, python-format
+msgid "Week %(start)s–%(end)s"
+msgstr "Woche %(start)s–%(end)s"
+
+#: worksheets/templates/worksheets/week_detail.html:10
+msgid ""
+"Waiting for the analysis server. Your worksheets are saved and will be "
+"analysed automatically as soon as it is switched on. You can close this page"
+" and come back later."
+msgstr ""
+"Warten auf den Analyse-Server. Ihre Arbeitsblätter sind gespeichert und "
+"werden automatisch analysiert, sobald er eingeschaltet ist. Sie können diese"
+" Seite schließen und später wiederkommen."
+
+#: worksheets/templates/worksheets/week_detail.html:12
+msgid ""
+"The worksheets are being analysed. This can take a few minutes; the page "
+"updates itself."
+msgstr ""
+"Die Arbeitsblätter werden analysiert. Das kann ein paar Minuten dauern; die "
+"Seite aktualisiert sich selbst."
+
+#: worksheets/templates/worksheets/week_detail.html:15
+msgid "Add more pages"
+msgstr "Weitere Seiten hinzufügen"
+
+#: worksheets/templates/worksheets/week_detail.html:24
+#, python-format
+msgid "page %(n)s"
+msgstr "Seite %(n)s"
+
+#: worksheets/templates/worksheets/week_detail.html:29
+msgid "Difficulty"
+msgstr "Schwierigkeit"
+
+#: worksheets/templates/worksheets/week_detail.html:31
+msgid "This doesn't look like a worksheet, so it will be left out of the plan."
+msgstr ""
+"Das sieht nicht nach einem Arbeitsblatt aus und wird im Plan nicht "
+"berücksichtigt."
+
+#: worksheets/templates/worksheets/week_detail.html:34
+msgid "The analysis didn't work."
+msgstr "Die Analyse hat nicht geklappt."
+
+#: worksheets/templates/worksheets/week_detail.html:36
+msgid "Try again"
+msgstr "Nochmal versuchen"
+
+# | msgid "Remove"
+#: worksheets/templates/worksheets/week_detail.html:42
+msgid "Remove page"
+msgstr "Seite entfernen"
+
+#: worksheets/templates/worksheets/week_detail.html:47
+msgid "No pages in this week."
+msgstr "Keine Seiten in dieser Woche."
+
+#: worksheets/templates/worksheets/week_list.html:7
+msgid "Upload this week's worksheets"
+msgstr "Arbeitsblätter dieser Woche hochladen"
+
+#: worksheets/templates/worksheets/week_list.html:19
+msgid ""
+"No worksheets yet. Take photos of the work your child brought home and "
+"upload them here."
+msgstr ""
+"Noch keine Arbeitsblätter. Fotografieren Sie die Aufgaben, die Ihr Kind "
+"mitgebracht hat, und laden Sie sie hier hoch."
+
+#: worksheets/views.py:65
+#, python-format
+msgid "%(name)s could not be read. Please upload a photo (JPEG, PNG, HEIC) or a PDF."
+msgstr ""
+"%(name)s konnte nicht gelesen werden. Bitte laden Sie ein Foto (JPEG, PNG, "
+"HEIC) oder ein PDF hoch."
+
+#: worksheets/views.py:87
+#, python-format
+msgid "Uploaded. %(count)d page(s) will be analysed."
+msgstr "Hochgeladen. %(count)d Seite(n) werden analysiert."
+
+# | msgid "%(name)s was removed."
+#: worksheets/views.py:137
+msgid "The page was removed."
+msgstr "Die Seite wurde entfernt."
 
 #~ msgid "This app is being set up. Sign-in will be available soon."
 #~ msgstr "Diese App wird gerade eingerichtet. Die Anmeldung ist bald verfügbar."
