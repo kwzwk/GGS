@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Upload worksheets" %}{% endblock %}
+{% block content %}
+  <p><a href="{% url 'worksheets:weeks' child.pk %}">← {% blocktranslate with name=child.name %}Worksheets for {{ name }}{% endblocktranslate %}</a></p>
+  <h1>{% translate "Upload worksheets" %}</h1>
+  <p class="note">{% blocktranslate with name=child.name %}Photograph or scan the work {{ name }} was given this week. One photo per page works best: flat, well lit and the whole page in view.{% endblocktranslate %}</p>
+  <form method="post" enctype="multipart/form-data" class="form">
+    {% csrf_token %}
+    {{ form }}
+    <div class="actions">
+      <button type="submit" class="button">{% translate "Upload" %}</button>
+    </div>
+  </form>
+{% endblock %}

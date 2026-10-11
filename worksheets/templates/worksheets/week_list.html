@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% blocktranslate with name=child.name %}Worksheets for {{ name }}{% endblocktranslate %}{% endblock %}
+{% block content %}
+  <p><a href="{% url 'children:list' %}">← {% translate "My children" %}</a></p>
+  <h1>{% blocktranslate with name=child.name %}Worksheets for {{ name }}{% endblocktranslate %}</h1>
+  <p><a class="button" href="{% url 'worksheets:upload' child.pk %}">{% translate "Upload this week's worksheets" %}</a></p>
+  {% if weeks %}
+    <ul class="cards">
+      {% for week in weeks %}
+        <li class="card">
+          <a href="{% url 'worksheets:week' child.pk week.week_start|date:'Y-m-d' %}">
+            {% blocktranslate with start=week.week_start|date:"d.m." end=week.week_end|date:"d.m.Y" %}Week {{ start }}–{{ end }}{% endblocktranslate %}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="note">{% translate "No worksheets yet. Take photos of the work your child brought home and upload them here." %}</p>
+  {% endif %}
+{% endblock %}

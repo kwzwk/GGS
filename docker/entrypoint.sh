@@ -18,9 +18,19 @@ if [ "$#" -gt 0 ]; then
     exec "$@"
 fi
 
+# Background job worker (worksheet analysis, plan generation). Restarted if it
+# ever exits; jobs survive restarts because they live in the database.
+(
+    while true; do
+        python manage.py run_worker || true
+        sleep 5
+    done
+) &
+
 exec gunicorn ggs.wsgi \
     --bind "0.0.0.0:${GGS_PORT:-8000}" \
     --workers "${GGS_WEB_WORKERS:-2}" \
+    --timeout 120 \
     --forwarded-allow-ips "*" \
     --access-logfile - \
     --access-logformat '%({x-forwarded-for}i)s %(h)s "%(r)s" %(s)s %(b)s %(M)sms'

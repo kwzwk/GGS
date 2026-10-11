@@ -157,3 +157,26 @@ a { color: var(--accent); }
 @media print {
   .site-nav, .messages { display: none; }
 }
+
+.error { color: #a3261b; }
+.form input[type=date], .form input[type=file] {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  font: inherit;
+}
+
+.pages { list-style: none; padding: 0; display: grid; gap: 1rem; }
+.page {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+}
+.page img { width: 100%; height: auto; border-radius: 0.25rem; border: 1px solid var(--border); }
+.page-info p { margin: 0 0 0.5rem; }
+.page-info form { display: inline; }

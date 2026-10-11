@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     "core",
     "accounts",
     "children",
+    "jobs",
+    "llm",
+    "worksheets",
 ]
 
 MIDDLEWARE = [
@@ -121,6 +124,10 @@ if DEBUG or sys.argv[1:2] == ["test"]:
     STORAGES["staticfiles"] = {"BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"}
 
 MEDIA_ROOT = DATA_DIR / "uploads"
+# Uploads are served only through permission-checked views, never as plain files.
+DATA_UPLOAD_MAX_NUMBER_FILES = 30
+# Phone photos are a few MB each; keep files on disk instead of in memory.
+FILE_UPLOAD_MAX_MEMORY_SIZE = 5 * 1024 * 1024
 MEDIA_URL = f"{BASE_PATH}/media/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
@@ -130,4 +137,6 @@ LOGGING = {
     "disable_existing_loggers": False,
     "handlers": {"console": {"class": "logging.StreamHandler"}},
     "root": {"handlers": ["console"], "level": env_str("GGS_LOG_LEVEL", "INFO")},
+    # httpx logs every request to Ollama at INFO.
+    "loggers": {"httpx": {"level": "WARNING"}},
 }

@@ -2,6 +2,8 @@ services:
   ggs:
     image: ghcr.io/kwzwk/ggs:latest
     restart: unless-stopped
+    # Reaps the background worker's processes.
+    init: true
     ports:
       - "8000:8000"
     volumes:
@@ -13,6 +15,8 @@ services:
       GGS_BASE_PATH: ""
       # Set to "false" only if you use the app over plain http.
       GGS_HTTPS_ONLY: "true"
+      # Ollama on the GPU PC. Can also be set later in the admin area.
+      GGS_OLLAMA_URL: ""
       # Fill in before the first start to create the admin account (ignored once one exists).
       GGS_ADMIN_USERNAME: ""
       GGS_ADMIN_PASSWORD: ""

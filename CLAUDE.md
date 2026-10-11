@@ -214,6 +214,7 @@ None right now. Add new ones here as they come up.
 | 2026-10-09 | No Wake-on-LAN; Kai switches the GPU PC on manually | Kai |
 | 2026-10-09 | Ollama runs on a separate PC with an RTX 4070 that is not always on; jobs queue until it is reachable | Kai |
 | 2026-10-10 | Compose file includes Watchtower (maintained nickfedor fork) to auto-update the app when CI publishes a new image | Kai |
+| 2026-10-11 | Uploads: max 25 MB per file, 20 files per upload; each photo/PDF page is stored as a JPEG (long edge 1600 px) for the vision model, the original file is kept too | Claude, step 3 |
 
 ## Working conventions for Claude
 

@@ -12,6 +12,7 @@
             <span class="muted">{{ child.get_class_level_display }}</span>
           </div>
           <div class="card-actions">
+            <a href="{% url 'worksheets:weeks' child.pk %}">{% translate "Worksheets" %}</a>
             <a href="{% url 'children:update' child.pk %}">{% translate "Edit" %}</a>
             <a href="{% url 'children:delete' child.pk %}">{% translate "Remove" %}</a>
           </div>

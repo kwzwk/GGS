@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block head %}{% if pending %}<meta http-equiv="refresh" content="20">{% endif %}{% endblock %}
+{% block title %}{% blocktranslate with start=week.week_start|date:"d.m." end=week.week_end|date:"d.m.Y" %}Week {{ start }}–{{ end }}{% endblocktranslate %}{% endblock %}
+{% block content %}
+  <p><a href="{% url 'worksheets:weeks' child.pk %}">← {% blocktranslate with name=child.name %}Worksheets for {{ name }}{% endblocktranslate %}</a></p>
+  <h1>{{ child.name }} · {% blocktranslate with start=week.week_start|date:"d.m." end=week.week_end|date:"d.m.Y" %}Week {{ start }}–{{ end }}{% endblocktranslate %}</h1>
+
+  {% if server_offline %}
+    <p class="notice">{% translate "Waiting for the analysis server. Your worksheets are saved and will be analysed automatically as soon as it is switched on. You can close this page and come back later." %}</p>
+  {% elif pending %}
+    <p class="notice">{% translate "The worksheets are being analysed. This can take a few minutes; the page updates itself." %}</p>
+  {% endif %}
+
+  <p><a class="button secondary" href="{% url 'worksheets:upload' child.pk %}?week={{ week.week_start|date:'Y-m-d' }}">{% translate "Add more pages" %}</a></p>
+
+  <ul class="pages">
+    {% for page in pages %}
+      <li class="page">
+        <a href="{% url 'worksheets:page_image' child.pk page.pk %}" target="_blank" rel="noopener">
+          <img src="{% url 'worksheets:page_image' child.pk page.pk %}" alt="{{ page.upload.original_name }}" loading="lazy">
+        </a>
+        <div class="page-info">
+          <p class="muted">{{ page.upload.original_name }}{% if page.upload.pages.count > 1 %} · {% blocktranslate with n=page.page_number %}page {{ n }}{% endblocktranslate %}{% endif %}</p>
+          {% if page.status == "done" %}
+            {% if page.analysis.is_worksheet %}
+              <p><strong>{{ page.subject_label }}</strong>{% if page.analysis.topics %}: {{ page.analysis.topics|join:", " }}{% endif %}</p>
+              {% if page.analysis.summary %}<p>{{ page.analysis.summary }}</p>{% endif %}
+              <p class="muted">{% translate "Difficulty" %}: {{ page.difficulty_label }}{% if page.analysis.task_types %} · {{ page.analysis.task_types|join:", " }}{% endif %}</p>
+            {% else %}
+              <p>{% translate "This doesn't look like a worksheet, so it will be left out of the plan." %}</p>
+            {% endif %}
+          {% elif page.status == "failed" %}
+            <p class="error">{% translate "The analysis didn't work." %}</p>
+            <form method="post" action="{% url 'worksheets:page_retry' child.pk page.pk %}">
+              {% csrf_token %}<button type="submit" class="link">{% translate "Try again" %}</button>
+            </form>
+          {% else %}
+            <p class="muted">{{ page.get_status_display }}…</p>
+          {% endif %}
+          <form method="post" action="{% url 'worksheets:page_delete' child.pk page.pk %}">
+            {% csrf_token %}<button type="submit" class="link">{% translate "Remove page" %}</button>
+          </form>
+        </div>
+      </li>
+    {% empty %}
+      <li>{% translate "No pages in this week." %}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
