@@ -42,12 +42,13 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      # latest is tied to main explicitly: the repo's default branch setting is not main.
       - id: meta
         uses: docker/metadata-action@v5
         with:
           images: ghcr.io/kwzwk/ggs
           tags: |
-            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
             type=sha
       - name: Build (and push on main)
         uses: docker/build-push-action@v6
