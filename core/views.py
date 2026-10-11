@@ -2,12 +2,14 @@ import logging
 
 from django.db import connection
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 logger = logging.getLogger(__name__)
 
 
 def home(request):
+    if request.user.is_authenticated:
+        return redirect("children:list")
     return render(request, "core/home.html")
 
 

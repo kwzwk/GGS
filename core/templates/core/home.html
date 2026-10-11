@@ -3,5 +3,8 @@
 {% block content %}
   <h1>{% translate "Welcome" %}</h1>
   <p>{% translate "Upload your child's weekly worksheets and get a short, printable study plan for every school day." %}</p>
-  <p class="note">{% translate "This app is being set up. Sign-in will be available soon." %}</p>
+  <p class="actions">
+    <a class="button" href="{% url 'login' %}">{% translate "Log in" %}</a>
+    <a class="button secondary" href="{% url 'register' %}">{% translate "Create account" %}</a>
+  </p>
 {% endblock %}

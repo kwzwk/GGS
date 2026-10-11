@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% if child %}{% translate "Edit child" %}{% else %}{% translate "Add child" %}{% endif %}{% endblock %}
+{% block content %}
+  <h1>{% if child %}{% translate "Edit child" %}{% else %}{% translate "Add child" %}{% endif %}</h1>
+  <form method="post" class="form">
+    {% csrf_token %}
+    {{ form.as_div }}
+    <button type="submit" class="button">{% translate "Save" %}</button>
+    <a href="{% url 'children:list' %}">{% translate "Cancel" %}</a>
+  </form>
+{% endblock %}
