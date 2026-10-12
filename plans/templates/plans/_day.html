@@ -1,0 +1,45 @@
+{% load i18n %}
+<h2 class="day-title">{{ day.get_weekday_display }} · {% if day.is_friday %}{% translate "Quiz and research question" %}{% else %}{{ day.topic }}{% endif %}</h2>
+{% for ex in day.exercises.all %}
+  <section class="block">
+    <h3>{{ forloop.counter }}. {{ ex.get_kind_display }} <span class="minutes">({% blocktranslate count m=ex.minutes %}{{ m }} min.{% plural %}{{ m }} min.{% endblocktranslate %})</span></h3>
+    {% if ex.kind == "recall" %}
+      <p>{% translate "From memory, without looking:" %}</p>
+      <ul>{% for item in ex.content.items %}<li>{{ item }}</li>{% endfor %}</ul>
+    {% elif ex.kind == "quiz" %}
+      <p>{% if klasse1 %}{% translate "All without help. Answer out loud or show it." %}{% else %}{% translate "All from memory. Afterwards colour each task green (right) or yellow (keep practising)." %}{% endif %}</p>
+      <ul>{% for item in ex.content.items %}<li>{{ item }}</li>{% endfor %}</ul>
+    {% elif ex.kind == "puzzle" or ex.kind == "explain" %}
+      <p>{{ ex.content.text|linebreaksbr }}</p>
+    {% elif ex.kind == "main" %}
+      {% if ex.content.text %}<p>{{ ex.content.text|linebreaksbr }}</p>{% endif %}
+      {% if ex.content.choices|length > 1 %}<p>{% translate "Choose A or B:" %}</p>{% endif %}
+      {% for choice in ex.content.choices %}
+        <div class="choice"><strong>{{ choice.label }}{% if choice.title %} – {{ choice.title }}{% endif %}:</strong><br>{{ choice.text|linebreaksbr }}</div>
+      {% endfor %}
+    {% elif ex.kind == "reflect" %}
+      {% if klasse1 %}
+        <p>{% translate "Colour in a face:" %} 😀 😐 😟</p>
+        <p>{% translate "What would you like to know? (The parent writes the question down.)" %}<br><span class="line"></span></p>
+      {% else %}
+        <p>{% translate "How sure are you? Colour in:" %} 🟢 {% translate "sure" %} · 🟡 {% translate "almost" %} · 🔴 {% translate "not yet" %}</p>
+        <p>{% translate "What would you like to know?" %}<br><span class="line"></span></p>
+      {% endif %}
+    {% elif ex.kind == "research" %}
+      <p>{% translate "Pick one of your questions from this week. Find out the answer together (book, encyclopedia, asking someone). What did you discover?" %}<br><span class="line"></span></p>
+    {% elif ex.kind == "review" %}
+      {% if klasse1 %}
+        <p>{% translate "Draw the best thing that happened at school this week and tell me about it." %}</p>
+      {% else %}
+        <p>{% translate "What was easy this week?" %} <span class="line"></span></p>
+        <p>{% translate "What was hard?" %} <span class="line"></span></p>
+        <p>{% translate "What are you proud of?" %} <span class="line"></span></p>
+      {% endif %}
+    {% endif %}
+    {% if show_sources and ex.source_pages.all %}
+      <p class="sources screen-only">{% translate "Based on:" %}
+        {% for page in ex.source_pages.all %}<a href="{% url 'worksheets:page_image' child.pk page.pk %}" target="_blank" rel="noopener">{{ page.upload.original_name }}{% if page.page_number > 1 %} ({{ page.page_number }}){% endif %}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
+      </p>
+    {% endif %}
+  </section>
+{% endfor %}

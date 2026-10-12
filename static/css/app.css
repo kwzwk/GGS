@@ -180,3 +180,14 @@ a { color: var(--accent); }
 .page img { width: 100%; height: auto; border-radius: 0.25rem; border: 1px solid var(--border); }
 .page-info p { margin: 0 0 0.5rem; }
 .page-info form { display: inline; }
+
+.day { border-top: 1px solid var(--border); margin-top: 1.5rem; padding-top: 0.5rem; }
+.day h2 { font-size: 1.25rem; }
+.block { margin-bottom: 1rem; }
+.block h3 { font-size: 1.05rem; margin: 0 0 0.25rem; }
+.block p, .block ul { margin: 0.25rem 0; }
+.minutes { color: var(--muted); font-weight: 400; }
+.choice { margin: 0.5rem 0 0.5rem 0.5rem; }
+.line { display: inline-block; min-width: 60%; border-bottom: 1px solid var(--muted); height: 1.2em; }
+.sources { font-size: 0.875rem; color: var(--muted); }
+.disclaimer { border-left-color: #b26b00; }

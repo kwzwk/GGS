@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block head %}{% if plan.is_pending %}<meta http-equiv="refresh" content="20">{% endif %}{% endblock %}
+{% block title %}{% blocktranslate with name=child.name %}Study plan for {{ name }}{% endblocktranslate %}{% endblock %}
+{% block content %}
+  <p><a href="{% url 'worksheets:week' child.pk week.week_start|date:'Y-m-d' %}">← {% blocktranslate with start=week.week_start|date:"d.m." end=week.week_end|date:"d.m.Y" %}Week {{ start }}–{{ end }}{% endblocktranslate %}</a></p>
+  <h1>{% blocktranslate with name=child.name %}Study plan for {{ name }}{% endblocktranslate %}</h1>
+  <p class="muted">{% blocktranslate with start=week.week_start|date:"d.m." end=week.week_end|date:"d.m.Y" %}Week {{ start }}–{{ end }}{% endblocktranslate %}</p>
+
+  {% if plan.status == "done" %}
+    <p class="notice disclaimer">{% translate "Note: these exercises were written by an AI. Please check them for accuracy before your child uses them." %}</p>
+    <p class="actions">
+      <a class="button" href="{% url 'plans:print' child.pk week.week_start|date:'Y-m-d' %}">{% translate "Print plan" %}</a>
+    </p>
+    {% include "plans/_tips.html" with klasse1=klasse1 %}
+    {% for day in days %}
+      <div class="day">{% include "plans/_day.html" with show_sources=True klasse1=klasse1 %}</div>
+    {% endfor %}
+  {% elif plan.status == "failed" %}
+    <p class="notice error">{% translate "The plan could not be written. Please try again; if it keeps failing, tell the admin." %}</p>
+  {% elif server_offline %}
+    <p class="notice">{% translate "Waiting for the analysis server. The plan will be written automatically as soon as it is switched on. You can close this page and come back later." %}</p>
+  {% else %}
+    <p class="notice">{% translate "The plan is being written, one day after the other. This can take a few minutes; the page updates itself." %}</p>
+  {% endif %}
+
+  {% if not plan.is_pending %}
+    <form method="post" action="{% url 'plans:create' child.pk week.week_start|date:'Y-m-d' %}">
+      {% csrf_token %}<button type="submit" class="button secondary">{% translate "Write a new plan" %}</button>
+    </form>
+  {% endif %}
+{% endblock %}

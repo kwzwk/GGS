@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -22,6 +23,12 @@ class Child(models.Model):
         help_text=_("Shown on the printed plan. A first name or nickname is enough."),
     )
     class_level = models.PositiveSmallIntegerField(_("class"), choices=ClassLevel.choices)
+    daily_minutes = models.PositiveSmallIntegerField(
+        _("minutes per day"),
+        default=20,
+        validators=[MinValueValidator(5), MaxValueValidator(45)],
+        help_text=_("Upper limit for one day's study session. Plans never exceed it."),
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

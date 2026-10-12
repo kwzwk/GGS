@@ -12,6 +12,20 @@
     <p class="notice">{% translate "The worksheets are being analysed. This can take a few minutes; the page updates itself." %}</p>
   {% endif %}
 
+  <div class="plan-box">
+    {% if plan %}
+      <p><a class="button" href="{% url 'plans:detail' child.pk week.week_start|date:'Y-m-d' %}">{% translate "Show study plan" %}</a>
+        {% if plan.is_pending %}<span class="muted">{{ plan.get_status_display }}…</span>{% endif %}</p>
+    {% elif can_plan %}
+      <form method="post" action="{% url 'plans:create' child.pk week.week_start|date:'Y-m-d' %}">
+        {% csrf_token %}<button type="submit" class="button">{% translate "Create study plan" %}</button>
+      </form>
+      <p class="muted">{% translate "Creates a Mon–Fri plan with exercises from the analysed worksheets, ready to print." %}</p>
+    {% elif pages %}
+      <p class="muted">{% translate "The study plan can be created once the worksheets are analysed." %}</p>
+    {% endif %}
+  </div>
+
   <p><a class="button secondary" href="{% url 'worksheets:upload' child.pk %}?week={{ week.week_start|date:'Y-m-d' }}">{% translate "Add more pages" %}</a></p>
 
   <ul class="pages">

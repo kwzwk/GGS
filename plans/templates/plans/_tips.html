@@ -1,0 +1,10 @@
+{% load i18n %}
+<h2>{% translate "How to help your child" %}</h2>
+<ul class="tips">
+  {% if klasse1 %}<li>{% translate "Your child can't read yet: read every task aloud. Answers may be spoken, shown or drawn." %}</li>{% endif %}
+  <li>{% blocktranslate count m=plan.daily_minutes %}Every day at the same time, at most {{ m }} minutes. Short and regular beats long. Stop early if your child is tired.{% plural %}Every day at the same time, at most {{ m }} minutes. Short and regular beats long. Stop early if your child is tired.{% endblocktranslate %}</li>
+  <li>{% translate "For “Do you remember?” don't help and don't look it up: remembering is the training. Mistakes are normal and useful." %}</li>
+  <li>{% translate "Praise the way, not the talent: “You counted again to check, good idea!” instead of “You're so clever!”" %}</li>
+  <li>{% translate "No rewards for studying (sweets, screen time). Your interest is the best reward." %}</li>
+  <li>{% translate "During “Explain it to me”, just listen and ask: “How did you do that?”" %}</li>
+</ul>

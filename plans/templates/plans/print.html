@@ -1,0 +1,26 @@
+{% load i18n static %}<!doctype html>
+<html lang="{{ plan.language }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% blocktranslate with name=child.name %}Study plan for {{ name }}{% endblocktranslate %}</title>
+  <link rel="stylesheet" href="{% static 'css/print.css' %}">
+</head>
+<body>
+  <p class="screen-only toolbar">
+    <a href="{% url 'plans:detail' child.pk week.week_start|date:'Y-m-d' %}">← {% translate "Back" %}</a>
+    <button type="button" onclick="window.print()">{% translate "Print" %}</button>
+  </p>
+  <section class="sheet">
+    <h1>{% blocktranslate with name=child.name start=week.week_start|date:"d.m." end=week.week_end|date:"d.m.Y" %}Study plan for {{ name }} · Week {{ start }}–{{ end }}{% endblocktranslate %}</h1>
+    <p class="disclaimer">{% translate "Note: these exercises were written by an AI. Please check them for accuracy before your child uses them." %}</p>
+    {% include "plans/_tips.html" %}
+  </section>
+  {% for day in days %}
+    <section class="sheet">
+      <p class="sheet-head">{{ child.name }} · {% blocktranslate with start=week.week_start|date:"d.m." end=week.week_end|date:"d.m.Y" %}Week {{ start }}–{{ end }}{% endblocktranslate %}</p>
+      {% include "plans/_day.html" with show_sources=False %}
+    </section>
+  {% endfor %}
+</body>
+</html>

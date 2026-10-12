@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-11 07:34+0200\n"
+"POT-Creation-Date: 2026-10-12 20:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -166,43 +166,51 @@ msgstr ""
 msgid "Children"
 msgstr "Kinder"
 
-#: children/models.py:8
+#: children/models.py:9
 msgid "Class 1"
 msgstr "Klasse 1"
 
-#: children/models.py:9
+#: children/models.py:10
 msgid "Class 2"
 msgstr "Klasse 2"
 
-#: children/models.py:10
+#: children/models.py:11
 msgid "Class 3"
 msgstr "Klasse 3"
 
-#: children/models.py:11
+#: children/models.py:12
 msgid "Class 4"
 msgstr "Klasse 4"
 
-#: children/models.py:17 worksheets/admin.py:27
+#: children/models.py:18 worksheets/admin.py:27
 msgid "parent"
 msgstr "Elternteil"
 
-#: children/models.py:20
+#: children/models.py:21
 msgid "first name"
 msgstr "Vorname"
 
-#: children/models.py:22
+#: children/models.py:23
 msgid "Shown on the printed plan. A first name or nickname is enough."
 msgstr "Steht auf dem ausgedruckten Plan. Ein Vorname oder Spitzname reicht."
 
-#: children/models.py:24
+#: children/models.py:25
 msgid "class"
 msgstr "Klasse"
 
-#: children/models.py:29
+#: children/models.py:27
+msgid "minutes per day"
+msgstr "Minuten pro Tag"
+
+#: children/models.py:30
+msgid "Upper limit for one day's study session. Plans never exceed it."
+msgstr "Obergrenze für eine Lerneinheit pro Tag. Pläne überschreiten sie nie."
+
+#: children/models.py:36
 msgid "child"
 msgstr "Kind"
 
-#: children/models.py:30
+#: children/models.py:37
 msgid "children"
 msgstr "Kinder"
 
@@ -456,9 +464,336 @@ msgstr ""
 msgid "Show jobs"
 msgstr "Aufgaben anzeigen"
 
-#: templates/base.html:6 templates/base.html:12
+#: plans/apps.py:7 templates/base.html:6 templates/base.html:12
 msgid "Study plans"
 msgstr "Lernpläne"
+
+#: plans/models.py:5
+msgid "Monday"
+msgstr "Montag"
+
+#: plans/models.py:6
+msgid "Tuesday"
+msgstr "Dienstag"
+
+#: plans/models.py:7
+msgid "Wednesday"
+msgstr "Mittwoch"
+
+#: plans/models.py:8
+msgid "Thursday"
+msgstr "Donnerstag"
+
+#: plans/models.py:9
+msgid "Friday"
+msgstr "Freitag"
+
+#: plans/models.py:15
+msgid "Waiting to be written"
+msgstr "Wartet auf Erstellung"
+
+#: plans/models.py:16
+msgid "Being written"
+msgstr "Wird geschrieben"
+
+#: plans/models.py:17
+msgid "Ready"
+msgstr "Fertig"
+
+# | msgid "failed"
+#: plans/models.py:18
+msgid "Failed"
+msgstr "Fehlgeschlagen"
+
+# | msgid "Study plans"
+#: plans/models.py:31
+msgid "study plan"
+msgstr "Lernplan"
+
+# | msgid "Study plans"
+#: plans/models.py:32
+msgid "study plans"
+msgstr "Lernpläne"
+
+#: plans/models.py:71
+msgid "Do you remember?"
+msgstr "Weißt du noch?"
+
+#: plans/models.py:72
+msgid "Puzzle of the day"
+msgstr "Rätsel des Tages"
+
+#: plans/models.py:73
+msgid "Main task"
+msgstr "Hauptaufgabe"
+
+#: plans/models.py:74
+msgid "Explain it to me"
+msgstr "Erklär es mir"
+
+#: plans/models.py:75
+msgid "How did it go?"
+msgstr "Wie war’s?"
+
+#: plans/models.py:76
+msgid "Friday quiz"
+msgstr "Quiz-Freitag"
+
+#: plans/models.py:77
+msgid "Research question"
+msgstr "Forscherfrage"
+
+#: plans/models.py:78
+msgid "Looking back on the week"
+msgstr "Wochenrückblick"
+
+#: plans/models.py:93
+msgid "exercise"
+msgstr "Übung"
+
+#: plans/models.py:94
+msgid "exercises"
+msgstr "Übungen"
+
+#: plans/templates/plans/_day.html:2
+msgid "Quiz and research question"
+msgstr "Quiz und Forscherfrage"
+
+#: plans/templates/plans/_day.html:5
+#, python-format
+msgid "%(m)s min."
+msgid_plural "%(m)s min."
+msgstr[0] "%(m)s Min."
+msgstr[1] "%(m)s Min."
+
+#: plans/templates/plans/_day.html:7
+msgid "From memory, without looking:"
+msgstr "Aus dem Kopf, ohne nachzuschauen:"
+
+#: plans/templates/plans/_day.html:10
+msgid "All without help. Answer out loud or show it."
+msgstr "Alles ohne Hilfe. Antworte laut oder zeig es."
+
+#: plans/templates/plans/_day.html:10
+msgid ""
+"All from memory. Afterwards colour each task green (right) or yellow (keep "
+"practising)."
+msgstr ""
+"Alles aus dem Kopf. Male danach jede Aufgabe grün (richtig) oder gelb (noch "
+"üben) an."
+
+#: plans/templates/plans/_day.html:16
+msgid "Choose A or B:"
+msgstr "Wähle A oder B:"
+
+#: plans/templates/plans/_day.html:22
+msgid "Colour in a face:"
+msgstr "Male ein Gesicht an:"
+
+#: plans/templates/plans/_day.html:23
+msgid "What would you like to know? (The parent writes the question down.)"
+msgstr "Was möchtest du gern wissen? (Eltern schreiben die Frage auf.)"
+
+#: plans/templates/plans/_day.html:25
+msgid "How sure are you? Colour in:"
+msgstr "Wie sicher bist du? Male an:"
+
+#: plans/templates/plans/_day.html:25
+msgid "sure"
+msgstr "sicher"
+
+#: plans/templates/plans/_day.html:25
+msgid "almost"
+msgstr "fast"
+
+#: plans/templates/plans/_day.html:25
+msgid "not yet"
+msgstr "noch nicht"
+
+#: plans/templates/plans/_day.html:26
+msgid "What would you like to know?"
+msgstr "Was möchtest du gern wissen?"
+
+#: plans/templates/plans/_day.html:29
+msgid ""
+"Pick one of your questions from this week. Find out the answer together "
+"(book, encyclopedia, asking someone). What did you discover?"
+msgstr ""
+"Such dir eine deiner Fragen von dieser Woche aus. Findet die Antwort "
+"zusammen heraus (Buch, Lexikon, jemanden fragen). Was habt ihr entdeckt?"
+
+#: plans/templates/plans/_day.html:32
+msgid "Draw the best thing that happened at school this week and tell me about it."
+msgstr "Male dein schönstes Erlebnis in der Schule diese Woche und erzähl mir davon."
+
+# | msgid "No pages in this week."
+#: plans/templates/plans/_day.html:34
+msgid "What was easy this week?"
+msgstr "Was war diese Woche leicht?"
+
+#: plans/templates/plans/_day.html:35
+msgid "What was hard?"
+msgstr "Was war schwer?"
+
+#: plans/templates/plans/_day.html:36
+msgid "What are you proud of?"
+msgstr "Worauf bist du stolz?"
+
+#: plans/templates/plans/_day.html:40
+msgid "Based on:"
+msgstr "Grundlage:"
+
+#: plans/templates/plans/_tips.html:2
+msgid "How to help your child"
+msgstr "So helfen Sie Ihrem Kind"
+
+#: plans/templates/plans/_tips.html:4
+msgid ""
+"Your child can't read yet: read every task aloud. Answers may be spoken, "
+"shown or drawn."
+msgstr ""
+"Ihr Kind kann noch nicht lesen: Lesen Sie jede Aufgabe vor. Antworten dürfen"
+" gesprochen, gezeigt oder gemalt werden."
+
+#: plans/templates/plans/_tips.html:5
+#, python-format
+msgid ""
+"Every day at the same time, at most %(m)s minutes. Short and regular beats "
+"long. Stop early if your child is tired."
+msgid_plural ""
+"Every day at the same time, at most %(m)s minutes. Short and regular beats "
+"long. Stop early if your child is tired."
+msgstr[0] ""
+"Jeden Tag zur gleichen Zeit, höchstens %(m)s Minute. Lieber kurz und "
+"regelmäßig. Wenn Ihr Kind müde ist, früher aufhören."
+msgstr[1] ""
+"Jeden Tag zur gleichen Zeit, höchstens %(m)s Minuten. Lieber kurz und "
+"regelmäßig. Wenn Ihr Kind müde ist, früher aufhören."
+
+#: plans/templates/plans/_tips.html:6
+msgid ""
+"For “Do you remember?” don't help and don't look it up: remembering is the "
+"training. Mistakes are normal and useful."
+msgstr ""
+"Bei „Weißt du noch?“ nicht helfen und nicht nachschauen: Erinnern ist das "
+"Training. Fehler sind normal und hilfreich."
+
+#: plans/templates/plans/_tips.html:7
+msgid ""
+"Praise the way, not the talent: “You counted again to check, good idea!” "
+"instead of “You're so clever!”"
+msgstr ""
+"Loben Sie den Weg, nicht das Talent: „Du hast nachgezählt, gute Idee!“ statt"
+" „Du bist so schlau!“"
+
+#: plans/templates/plans/_tips.html:8
+msgid ""
+"No rewards for studying (sweets, screen time). Your interest is the best "
+"reward."
+msgstr ""
+"Keine Belohnung fürs Lernen (Süßigkeiten, Bildschirmzeit). Ihr Interesse ist"
+" die beste Belohnung."
+
+#: plans/templates/plans/_tips.html:9
+msgid "During “Explain it to me”, just listen and ask: “How did you do that?”"
+msgstr ""
+"Hören Sie bei „Erklär es mir“ einfach zu und fragen Sie nach: „Wie hast du "
+"das gemacht?“"
+
+# | msgid "Study plans"
+#: plans/templates/plans/detail.html:4 plans/templates/plans/detail.html:7
+#: plans/templates/plans/print.html:6
+#, python-format
+msgid "Study plan for %(name)s"
+msgstr "Lernplan für %(name)s"
+
+#: plans/templates/plans/detail.html:6 plans/templates/plans/detail.html:8
+#: plans/templates/plans/print.html:21
+#: worksheets/templates/worksheets/week_detail.html:4
+#: worksheets/templates/worksheets/week_detail.html:7
+#: worksheets/templates/worksheets/week_list.html:13
+#, python-format
+msgid "Week %(start)s–%(end)s"
+msgstr "Woche %(start)s–%(end)s"
+
+#: plans/templates/plans/detail.html:11 plans/templates/plans/print.html:16
+msgid ""
+"Note: these exercises were written by an AI. Please check them for accuracy "
+"before your child uses them."
+msgstr ""
+"Hinweis: Die Übungen wurden von einer KI erstellt. Bitte prüfen Sie sie auf "
+"Richtigkeit, bevor Ihr Kind sie benutzt."
+
+#: plans/templates/plans/detail.html:13
+msgid "Print plan"
+msgstr "Plan drucken"
+
+#: plans/templates/plans/detail.html:20
+msgid ""
+"The plan could not be written. Please try again; if it keeps failing, tell "
+"the admin."
+msgstr ""
+"Der Plan konnte nicht erstellt werden. Bitte versuchen Sie es erneut; wenn "
+"es weiter nicht klappt, sagen Sie dem Admin Bescheid."
+
+# | msgid ""
+# | "Waiting for the analysis server. Your worksheets are saved and will be "
+# | "analysed automatically as soon as it is switched on. You can close this "
+# | "page and come back later."
+#: plans/templates/plans/detail.html:22
+msgid ""
+"Waiting for the analysis server. The plan will be written automatically as "
+"soon as it is switched on. You can close this page and come back later."
+msgstr ""
+"Warten auf den Analyse-Server. Der Plan wird automatisch erstellt, sobald er"
+" eingeschaltet ist. Sie können diese Seite schließen und später "
+"wiederkommen."
+
+# | msgid ""
+# | "The worksheets are being analysed. This can take a few minutes; the page "
+# | "updates itself."
+#: plans/templates/plans/detail.html:24
+msgid ""
+"The plan is being written, one day after the other. This can take a few "
+"minutes; the page updates itself."
+msgstr ""
+"Der Plan wird geschrieben, ein Tag nach dem anderen. Das kann ein paar "
+"Minuten dauern; die Seite aktualisiert sich selbst."
+
+#: plans/templates/plans/detail.html:29
+msgid "Write a new plan"
+msgstr "Neuen Plan erstellen"
+
+#: plans/templates/plans/print.html:11
+msgid "Back"
+msgstr "Zurück"
+
+#: plans/templates/plans/print.html:12
+msgid "Print"
+msgstr "Drucken"
+
+# | msgid "Week %(start)s–%(end)s"
+#: plans/templates/plans/print.html:15
+#, python-format
+msgid "Study plan for %(name)s · Week %(start)s–%(end)s"
+msgstr "Lernplan für %(name)s · Woche %(start)s–%(end)s"
+
+#: plans/views.py:37
+msgid "Please wait until all worksheets are analysed."
+msgstr "Bitte warten Sie, bis alle Arbeitsblätter analysiert sind."
+
+#: plans/views.py:39
+msgid "No worksheet topics found for this week, so there is nothing to plan yet."
+msgstr ""
+"Für diese Woche wurden keine Themen auf den Arbeitsblättern gefunden, daher "
+"gibt es noch nichts zu planen."
+
+# | msgid ""
+# | "The worksheets are being analysed. This can take a few minutes; the page "
+# | "updates itself."
+#: plans/views.py:42
+msgid "The study plan is being written. This can take a few minutes."
+msgstr "Der Lernplan wird geschrieben. Das kann ein paar Minuten dauern."
 
 #: templates/base.html:25
 msgid "Admin"
@@ -603,13 +938,6 @@ msgstr ""
 msgid "Upload"
 msgstr "Hochladen"
 
-#: worksheets/templates/worksheets/week_detail.html:4
-#: worksheets/templates/worksheets/week_detail.html:7
-#: worksheets/templates/worksheets/week_list.html:13
-#, python-format
-msgid "Week %(start)s–%(end)s"
-msgstr "Woche %(start)s–%(end)s"
-
 #: worksheets/templates/worksheets/week_detail.html:10
 msgid ""
 "Waiting for the analysis server. Your worksheets are saved and will be "
@@ -628,39 +956,61 @@ msgstr ""
 "Die Arbeitsblätter werden analysiert. Das kann ein paar Minuten dauern; die "
 "Seite aktualisiert sich selbst."
 
-#: worksheets/templates/worksheets/week_detail.html:15
+# | msgid "Study plans"
+#: worksheets/templates/worksheets/week_detail.html:17
+msgid "Show study plan"
+msgstr "Lernplan anzeigen"
+
+# | msgid "Study plans"
+#: worksheets/templates/worksheets/week_detail.html:21
+msgid "Create study plan"
+msgstr "Lernplan erstellen"
+
+#: worksheets/templates/worksheets/week_detail.html:23
+msgid ""
+"Creates a Mon–Fri plan with exercises from the analysed worksheets, ready to"
+" print."
+msgstr ""
+"Erstellt einen Plan für Montag bis Freitag mit Übungen zu den analysierten "
+"Arbeitsblättern, fertig zum Drucken."
+
+#: worksheets/templates/worksheets/week_detail.html:25
+msgid "The study plan can be created once the worksheets are analysed."
+msgstr "Der Lernplan kann erstellt werden, sobald die Arbeitsblätter analysiert sind."
+
+#: worksheets/templates/worksheets/week_detail.html:29
 msgid "Add more pages"
 msgstr "Weitere Seiten hinzufügen"
 
-#: worksheets/templates/worksheets/week_detail.html:24
+#: worksheets/templates/worksheets/week_detail.html:38
 #, python-format
 msgid "page %(n)s"
 msgstr "Seite %(n)s"
 
-#: worksheets/templates/worksheets/week_detail.html:29
+#: worksheets/templates/worksheets/week_detail.html:43
 msgid "Difficulty"
 msgstr "Schwierigkeit"
 
-#: worksheets/templates/worksheets/week_detail.html:31
+#: worksheets/templates/worksheets/week_detail.html:45
 msgid "This doesn't look like a worksheet, so it will be left out of the plan."
 msgstr ""
 "Das sieht nicht nach einem Arbeitsblatt aus und wird im Plan nicht "
 "berücksichtigt."
 
-#: worksheets/templates/worksheets/week_detail.html:34
+#: worksheets/templates/worksheets/week_detail.html:48
 msgid "The analysis didn't work."
 msgstr "Die Analyse hat nicht geklappt."
 
-#: worksheets/templates/worksheets/week_detail.html:36
+#: worksheets/templates/worksheets/week_detail.html:50
 msgid "Try again"
 msgstr "Nochmal versuchen"
 
 # | msgid "Remove"
-#: worksheets/templates/worksheets/week_detail.html:42
+#: worksheets/templates/worksheets/week_detail.html:56
 msgid "Remove page"
 msgstr "Seite entfernen"
 
-#: worksheets/templates/worksheets/week_detail.html:47
+#: worksheets/templates/worksheets/week_detail.html:61
 msgid "No pages in this week."
 msgstr "Keine Seiten in dieser Woche."
 
@@ -689,7 +1039,7 @@ msgid "Uploaded. %(count)d page(s) will be analysed."
 msgstr "Hochgeladen. %(count)d Seite(n) werden analysiert."
 
 # | msgid "%(name)s was removed."
-#: worksheets/views.py:137
+#: worksheets/views.py:139
 msgid "The page was removed."
 msgstr "Die Seite wurde entfernt."
 

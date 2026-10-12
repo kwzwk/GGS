@@ -7,5 +7,6 @@ urlpatterns = [
     path("accounts/", include("accounts.urls")),
     path("children/", include("children.urls")),
     path("children/<int:child_pk>/worksheets/", include("worksheets.urls")),
+    path("children/<int:child_pk>/plans/", include("plans.urls")),
     path("", include("core.urls")),
 ]
