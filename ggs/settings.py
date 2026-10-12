@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "jobs",
     "llm",
     "worksheets",
+    "plans",
 ]
 
 MIDDLEWARE = [

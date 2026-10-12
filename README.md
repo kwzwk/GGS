@@ -4,8 +4,9 @@ A self-hosted web app for parents of primary-school children: upload the
 week's worksheets, get a short, printable study plan for every school day.
 See [CLAUDE.md](CLAUDE.md) for the full spec.
 
-> Status: in development. Accounts, children and worksheet uploads with AI
-> analysis work; study plans are being built.
+> Status: in development. Accounts, children, worksheet uploads with AI
+> analysis and printable weekly study plans work; ratings, spaced repetition
+> from ratings and the shared exercise library are next.
 
 ## Run it
 
@@ -39,6 +40,16 @@ variables are ignored). Alternatively run
   zurücksetzen**. The admin page shows a temporary password to pass on;
   the parent must choose a new one after logging in.
 - **Ausgewählte Konten sperren** blocks an account again.
+
+## How parents use it
+
+1. **Meine Kinder → Arbeitsblätter → Arbeitsblätter dieser Woche hochladen**:
+   photos or PDFs of the week's worksheets.
+2. The AI reads each page (subject, topics, difficulty); the week page shows
+   the result.
+3. Once every page is analysed, **Lernplan erstellen** writes a Mon–Fri plan
+   with exercises. **Plan drucken** opens the A4 print version (one page per
+   day, plus a page of tips for the parent).
 
 ## AI server (Ollama)
 

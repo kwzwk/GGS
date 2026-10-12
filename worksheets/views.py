@@ -112,6 +112,8 @@ def week_detail(request, child_pk, week):
             "pages": pages,
             "pending": pending,
             "server_offline": pending and is_known_unreachable(),
+            "plan": getattr(week, "plan", None),
+            "can_plan": not pending and any(p.status == Page.Status.DONE for p in pages),
         },
     )
 
