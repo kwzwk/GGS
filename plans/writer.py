@@ -2,7 +2,7 @@
 
 import json
 
-LANGUAGE_NAMES = {"de": "German", "en": "English"}
+LANGUAGE_NAMES = {"de": "German (Deutsch)", "en": "English"}
 SUBJECT_NAMES = {
     "math": "maths",
     "german": "German (Deutsch)",
@@ -61,6 +61,11 @@ def _topic_text(topic):
     return "\n".join(lines)
 
 
+def _reminder(language):
+    # Small models drift into English; repeat the language at the end, where it sticks.
+    return f"\n\nIMPORTANT: write every text value in {LANGUAGE_NAMES.get(language, 'German')}."
+
+
 def build_prompt(day, class_level, language):
     rules = RULES.format(
         class_level=class_level,
@@ -75,7 +80,7 @@ Topics to mix (interleave them, alternate subjects):
 {recall}
 
 Write "quiz": 5 to 8 short questions or tasks, at most one line each."""
-        return rules + "\n\n" + task, FRIDAY_SCHEMA
+        return rules + "\n\n" + task + _reminder(language), FRIDAY_SCHEMA
 
     parts = [f"Main topic today:\n{_topic_text(day['main'])}", f"Topics for recall:\n{recall}", "Write:"]
     if "recall" in minutes:
@@ -91,7 +96,7 @@ Write "quiz": 5 to 8 short questions or tasks, at most one line each."""
         '(e.g. "Mit Bildern") and a "text" with the concrete tasks (use line breaks between tasks).'
     )
     parts.append(f'- "explain": one question for the child to explain to the parent ({minutes["explain"]} minutes).')
-    return rules + "\n\n" + "\n\n".join(parts), WEEKDAY_SCHEMA
+    return rules + "\n\n" + "\n\n".join(parts) + _reminder(language), WEEKDAY_SCHEMA
 
 
 def _lines(value, limit):

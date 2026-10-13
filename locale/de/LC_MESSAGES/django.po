@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 20:15+0200\n"
+"POT-Creation-Date: 2026-10-13 08:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -198,7 +198,7 @@ msgstr "Steht auf dem ausgedruckten Plan. Ein Vorname oder Spitzname reicht."
 msgid "class"
 msgstr "Klasse"
 
-#: children/models.py:27
+#: children/models.py:27 plans/models.py:25
 msgid "minutes per day"
 msgstr "Minuten pro Tag"
 
@@ -206,7 +206,7 @@ msgstr "Minuten pro Tag"
 msgid "Upper limit for one day's study session. Plans never exceed it."
 msgstr "Obergrenze für eine Lerneinheit pro Tag. Pläne überschreiten sie nie."
 
-#: children/models.py:36
+#: children/models.py:36 worksheets/models.py:34
 msgid "child"
 msgstr "Kind"
 
@@ -323,7 +323,7 @@ msgstr "erledigt"
 msgid "failed"
 msgstr "fehlgeschlagen"
 
-#: jobs/models.py:13
+#: jobs/models.py:13 plans/models.py:84
 msgid "kind"
 msgstr "Art"
 
@@ -331,7 +331,7 @@ msgstr "Art"
 msgid "payload"
 msgstr "Daten"
 
-#: jobs/models.py:16
+#: jobs/models.py:16 plans/models.py:21 worksheets/models.py:86
 msgid "status"
 msgstr "Status"
 
@@ -356,7 +356,7 @@ msgstr "erstellt"
 msgid "started"
 msgstr "gestartet"
 
-#: jobs/models.py:23
+#: jobs/models.py:23 plans/models.py:28
 msgid "finished"
 msgstr "beendet"
 
@@ -505,8 +505,25 @@ msgstr "Fertig"
 msgid "Failed"
 msgstr "Fehlgeschlagen"
 
+#: plans/models.py:20 worksheets/models.py:42 worksheets/models.py:59
+msgid "week"
+msgstr "Woche"
+
+#: plans/models.py:23 worksheets/models.py:88
+msgid "language"
+msgstr "Sprache"
+
+# | msgid "last error"
+#: plans/models.py:26 worksheets/models.py:90
+msgid "error"
+msgstr "Fehler"
+
+#: plans/models.py:27
+msgid "requested"
+msgstr "angefordert"
+
 # | msgid "Study plans"
-#: plans/models.py:31
+#: plans/models.py:31 plans/models.py:43
 msgid "study plan"
 msgstr "Lernplan"
 
@@ -515,43 +532,96 @@ msgstr "Lernplan"
 msgid "study plans"
 msgstr "Lernpläne"
 
-#: plans/models.py:71
+# | msgid "week"
+#: plans/models.py:44
+msgid "weekday"
+msgstr "Wochentag"
+
+#: plans/models.py:45 plans/models.py:86
+msgid "subject"
+msgstr "Fach"
+
+#: plans/models.py:46 plans/models.py:87
+msgid "topic"
+msgstr "Thema"
+
+#: plans/models.py:48
+msgid "outline"
+msgstr "Gliederung"
+
+# | msgid "Being written"
+#: plans/models.py:49
+msgid "written"
+msgstr "geschrieben"
+
+#: plans/models.py:53
+msgid "plan day"
+msgstr "Plantag"
+
+#: plans/models.py:54
+msgid "plan days"
+msgstr "Plantage"
+
+#: plans/models.py:73
 msgid "Do you remember?"
 msgstr "Weißt du noch?"
 
-#: plans/models.py:72
+#: plans/models.py:74
 msgid "Puzzle of the day"
 msgstr "Rätsel des Tages"
 
-#: plans/models.py:73
+#: plans/models.py:75
 msgid "Main task"
 msgstr "Hauptaufgabe"
 
-#: plans/models.py:74
+#: plans/models.py:76
 msgid "Explain it to me"
 msgstr "Erklär es mir"
 
-#: plans/models.py:75
+#: plans/models.py:77
 msgid "How did it go?"
 msgstr "Wie war’s?"
 
-#: plans/models.py:76
+#: plans/models.py:78
 msgid "Friday quiz"
 msgstr "Quiz-Freitag"
 
-#: plans/models.py:77
+#: plans/models.py:79
 msgid "Research question"
 msgstr "Forscherfrage"
 
-#: plans/models.py:78
+#: plans/models.py:80
 msgid "Looking back on the week"
 msgstr "Wochenrückblick"
 
-#: plans/models.py:93
+# | msgid "Monday"
+#: plans/models.py:82
+msgid "day"
+msgstr "Tag"
+
+#: plans/models.py:83
+msgid "order"
+msgstr "Reihenfolge"
+
+# | msgid "minutes per day"
+#: plans/models.py:85
+msgid "minutes"
+msgstr "Minuten"
+
+#: plans/models.py:89
+msgid "content"
+msgstr "Inhalt"
+
+# | msgid "Worksheets"
+#: plans/models.py:91
+msgid "worksheet pages"
+msgstr "Arbeitsblatt-Seiten"
+
+#: plans/models.py:95
 msgid "exercise"
 msgstr "Übung"
 
-#: plans/models.py:94
+#: plans/models.py:96
 msgid "exercises"
 msgstr "Übungen"
 
@@ -871,15 +941,30 @@ msgstr "schwer"
 msgid "week starting"
 msgstr "Woche ab"
 
-#: worksheets/models.py:42
-msgid "week"
-msgstr "Woche"
-
 #: worksheets/models.py:43
 msgid "weeks"
 msgstr "Wochen"
 
-#: worksheets/models.py:67
+# | msgid "profile"
+#: worksheets/models.py:60
+msgid "file"
+msgstr "Datei"
+
+# | msgid "first name"
+#: worksheets/models.py:61
+msgid "file name"
+msgstr "Dateiname"
+
+#: worksheets/models.py:62
+msgid "file type"
+msgstr "Dateityp"
+
+# | msgid "upload"
+#: worksheets/models.py:63
+msgid "uploaded"
+msgstr "hochgeladen"
+
+#: worksheets/models.py:67 worksheets/models.py:83
 msgid "upload"
 msgstr "Upload"
 
@@ -902,6 +987,24 @@ msgstr "Analysiert"
 #: worksheets/models.py:81
 msgid "Analysis failed"
 msgstr "Analyse fehlgeschlagen"
+
+#: worksheets/models.py:84
+msgid "page number"
+msgstr "Seitennummer"
+
+#: worksheets/models.py:85
+msgid "image"
+msgstr "Bild"
+
+# | msgid "Analysed"
+#: worksheets/models.py:89
+msgid "analysis"
+msgstr "Analyse"
+
+# | msgid "Analysed"
+#: worksheets/models.py:91
+msgid "analysed"
+msgstr "analysiert"
 
 #: worksheets/models.py:95
 msgid "page"
@@ -997,20 +1100,25 @@ msgstr ""
 "Das sieht nicht nach einem Arbeitsblatt aus und wird im Plan nicht "
 "berücksichtigt."
 
+# | msgid "Analysed"
 #: worksheets/templates/worksheets/week_detail.html:48
+msgid "Analyse again"
+msgstr "Neu analysieren"
+
+#: worksheets/templates/worksheets/week_detail.html:51
 msgid "The analysis didn't work."
 msgstr "Die Analyse hat nicht geklappt."
 
-#: worksheets/templates/worksheets/week_detail.html:50
+#: worksheets/templates/worksheets/week_detail.html:53
 msgid "Try again"
 msgstr "Nochmal versuchen"
 
 # | msgid "Remove"
-#: worksheets/templates/worksheets/week_detail.html:56
+#: worksheets/templates/worksheets/week_detail.html:59
 msgid "Remove page"
 msgstr "Seite entfernen"
 
-#: worksheets/templates/worksheets/week_detail.html:61
+#: worksheets/templates/worksheets/week_detail.html:64
 msgid "No pages in this week."
 msgstr "Keine Seiten in dieser Woche."
 

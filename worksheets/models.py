@@ -31,7 +31,7 @@ def _page_path(instance, filename):
 
 
 class Week(models.Model):
-    child = models.ForeignKey("children.Child", on_delete=models.CASCADE, related_name="weeks")
+    child = models.ForeignKey("children.Child", on_delete=models.CASCADE, related_name="weeks", verbose_name=_("child"))
     week_start = models.DateField(_("week starting"))
 
     class Meta:
@@ -56,11 +56,11 @@ class Week(models.Model):
 class Upload(models.Model):
     """One file as the parent sent it (photo, HEIC or PDF). Kept until the admin deletes it."""
 
-    week = models.ForeignKey(Week, on_delete=models.CASCADE, related_name="uploads")
-    file = models.FileField(upload_to=_upload_path)
-    original_name = models.CharField(max_length=255)
-    content_type = models.CharField(max_length=100, blank=True)
-    uploaded_at = models.DateTimeField(auto_now_add=True)
+    week = models.ForeignKey(Week, on_delete=models.CASCADE, related_name="uploads", verbose_name=_("week"))
+    file = models.FileField(_("file"), upload_to=_upload_path)
+    original_name = models.CharField(_("file name"), max_length=255)
+    content_type = models.CharField(_("file type"), max_length=100, blank=True)
+    uploaded_at = models.DateTimeField(_("uploaded"), auto_now_add=True)
 
     class Meta:
         ordering = ["uploaded_at"]
@@ -80,15 +80,15 @@ class Page(models.Model):
         DONE = "done", _("Analysed")
         FAILED = "failed", _("Analysis failed")
 
-    upload = models.ForeignKey(Upload, on_delete=models.CASCADE, related_name="pages")
-    page_number = models.PositiveSmallIntegerField(default=1)
-    image = models.ImageField(upload_to=_page_path)
-    status = models.CharField(max_length=10, choices=Status.choices, default=Status.QUEUED)
+    upload = models.ForeignKey(Upload, on_delete=models.CASCADE, related_name="pages", verbose_name=_("upload"))
+    page_number = models.PositiveSmallIntegerField(_("page number"), default=1)
+    image = models.ImageField(_("image"), upload_to=_page_path)
+    status = models.CharField(_("status"), max_length=10, choices=Status.choices, default=Status.QUEUED)
     # Language the analysis summary should be written in (the parent's language).
-    language = models.CharField(max_length=5, default="de")
-    analysis = models.JSONField(null=True, blank=True)
-    error = models.TextField(blank=True)
-    analysed_at = models.DateTimeField(null=True, blank=True)
+    language = models.CharField(_("language"), max_length=5, default="de")
+    analysis = models.JSONField(_("analysis"), null=True, blank=True)
+    error = models.TextField(_("error"), blank=True)
+    analysed_at = models.DateTimeField(_("analysed"), null=True, blank=True)
 
     class Meta:
         ordering = ["upload_id", "page_number"]

@@ -44,6 +44,9 @@
             {% else %}
               <p>{% translate "This doesn't look like a worksheet, so it will be left out of the plan." %}</p>
             {% endif %}
+            <form method="post" action="{% url 'worksheets:page_retry' child.pk page.pk %}">
+              {% csrf_token %}<button type="submit" class="link">{% translate "Analyse again" %}</button>
+            </form>
           {% elif page.status == "failed" %}
             <p class="error">{% translate "The analysis didn't work." %}</p>
             <form method="post" action="{% url 'worksheets:page_retry' child.pk page.pk %}">
