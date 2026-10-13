@@ -1,0 +1,1 @@
+{% load i18n %}{% if switch %}<span class="plan-language">{% translate "Plan language:" %} {% for option in switch %}{% if option.current %}<strong>{{ option.name }}</strong>{% else %}<a href="?lang={{ option.code }}" lang="{{ option.code }}">{{ option.name }}</a>{% endif %}{% if not forloop.last %} · {% endif %}{% endfor %}</span>{% endif %}

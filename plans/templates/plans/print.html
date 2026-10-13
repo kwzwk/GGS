@@ -1,5 +1,5 @@
 {% load i18n static %}<!doctype html>
-<html lang="{{ plan.language }}">
+<html lang="{{ language }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,8 +8,9 @@
 </head>
 <body>
   <p class="screen-only toolbar">
-    <a href="{% url 'plans:detail' child.pk week.week_start|date:'Y-m-d' %}">← {% translate "Back" %}</a>
+    <a href="{% url 'plans:detail' child.pk week.week_start|date:'Y-m-d' %}?lang={{ language }}">← {% translate "Back" %}</a>
     <button type="button" onclick="window.print()">{% translate "Print" %}</button>
+    {% include "plans/_switch.html" %}
   </p>
   <section class="sheet">
     <h1>{% blocktranslate with name=child.name start=week.week_start|date:"d.m." end=week.week_end|date:"d.m.Y" %}Study plan for {{ name }} · Week {{ start }}–{{ end }}{% endblocktranslate %}</h1>

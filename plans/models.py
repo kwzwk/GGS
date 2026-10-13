@@ -46,7 +46,11 @@ class PlanDay(models.Model):
     topic = models.CharField(_("topic"), max_length=200, blank=True)
     # The outline the exercises are written from (topics, minutes per block).
     outline = models.JSONField(_("outline"), default=dict)
+    # The day's heading as the model wrote it, and translations: {"en": "..."}.
+    title = models.CharField(_("title"), max_length=200, blank=True)
+    title_translations = models.JSONField(_("translated titles"), default=dict, blank=True)
     written = models.BooleanField(_("written"), default=False)
+    translated = models.BooleanField(_("translated"), default=False)
 
     class Meta:
         ordering = ["weekday"]
@@ -60,6 +64,9 @@ class PlanDay(models.Model):
     @property
     def is_friday(self):
         return self.weekday == 4
+
+    def title_in(self, language):
+        return self.title_translations.get(language) or self.title or self.topic
 
     @property
     def total_minutes(self):
@@ -87,6 +94,8 @@ class Exercise(models.Model):
     topic = models.CharField(_("topic"), max_length=200, blank=True)
     # {"text": str, "items": [str], "choices": [{"label", "title", "text"}]}
     content = models.JSONField(_("content"), default=dict)
+    # The same content in other languages: {"en": {...}}.
+    translations = models.JSONField(_("translations"), default=dict, blank=True)
     # Worksheets the exercise was derived from (private to the family).
     source_pages = models.ManyToManyField("worksheets.Page", blank=True, related_name="exercises", verbose_name=_("worksheet pages"))
 
@@ -97,6 +106,9 @@ class Exercise(models.Model):
 
     def __str__(self):
         return f"{self.day} · {self.get_kind_display()}"
+
+    def content_in(self, language):
+        return self.translations.get(language) or self.content
 
     @property
     def is_generated(self):

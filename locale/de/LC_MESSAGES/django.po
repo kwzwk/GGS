@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-13 08:18+0200\n"
+"POT-Creation-Date: 2026-10-13 09:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -46,12 +46,8 @@ msgstr "Passwort zurücksetzen (vorläufiges Passwort)"
 
 #: accounts/admin.py:73
 #, python-format
-msgid ""
-"Temporary password for %(username)s: %(password)s. They must choose a new "
-"password after logging in."
-msgstr ""
-"Vorläufiges Passwort für %(username)s: %(password)s. Nach der Anmeldung muss"
-" ein neues Passwort gewählt werden."
+msgid "Temporary password for %(username)s: %(password)s. They must choose a new password after logging in."
+msgstr "Vorläufiges Passwort für %(username)s: %(password)s. Nach der Anmeldung muss ein neues Passwort gewählt werden."
 
 #: accounts/apps.py:7
 msgid "Accounts"
@@ -67,9 +63,7 @@ msgstr "Nur damit die Verwaltung Sie erreichen kann. Wir verschicken keine E-Mai
 
 #: accounts/forms.py:33
 msgid "Your account is waiting for approval by the admin. Please try again later."
-msgstr ""
-"Ihr Konto wartet auf die Freigabe durch die Verwaltung. Bitte versuchen Sie "
-"es später noch einmal."
+msgstr "Ihr Konto wartet auf die Freigabe durch die Verwaltung. Bitte versuchen Sie es später noch einmal."
 
 #: accounts/models.py:13
 msgid "must change password"
@@ -116,12 +110,8 @@ msgid "Change password"
 msgstr "Passwort ändern"
 
 #: accounts/templates/accounts/password_change.html:7
-msgid ""
-"You are using a temporary password. Please choose your own password to "
-"continue."
-msgstr ""
-"Sie verwenden ein vorläufiges Passwort. Bitte wählen Sie ein eigenes "
-"Passwort, um fortzufahren."
+msgid "You are using a temporary password. Please choose your own password to continue."
+msgstr "Sie verwenden ein vorläufiges Passwort. Bitte wählen Sie ein eigenes Passwort, um fortzufahren."
 
 #: accounts/templates/accounts/password_change.html:12
 msgid "Save password"
@@ -142,9 +132,7 @@ msgstr "Weiter"
 
 #: accounts/templates/accounts/register.html:6
 msgid "After you register, the admin approves your account. Then you can log in."
-msgstr ""
-"Nach der Registrierung gibt die Verwaltung Ihr Konto frei. Danach können Sie"
-" sich anmelden."
+msgstr "Nach der Registrierung gibt die Verwaltung Ihr Konto frei. Danach können Sie sich anmelden."
 
 #: accounts/templates/accounts/register_done.html:3
 msgid "Account created"
@@ -155,12 +143,8 @@ msgid "Thank you!"
 msgstr "Vielen Dank!"
 
 #: accounts/templates/accounts/register_done.html:6
-msgid ""
-"Your account has been created and is waiting for approval by the admin. You "
-"can log in once it has been approved."
-msgstr ""
-"Ihr Konto wurde erstellt und wartet auf die Freigabe durch die Verwaltung. "
-"Sobald es freigegeben ist, können Sie sich anmelden."
+msgid "Your account has been created and is waiting for approval by the admin. You can log in once it has been approved."
+msgstr "Ihr Konto wurde erstellt und wartet auf die Freigabe durch die Verwaltung. Sobald es freigegeben ist, können Sie sich anmelden."
 
 #: children/apps.py:7
 msgid "Children"
@@ -234,11 +218,13 @@ msgstr "Entfernen"
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: children/templates/children/form.html:3 children/templates/children/form.html:5
+#: children/templates/children/form.html:3
+#: children/templates/children/form.html:5
 msgid "Edit child"
 msgstr "Kind bearbeiten"
 
-#: children/templates/children/form.html:3 children/templates/children/form.html:5
+#: children/templates/children/form.html:3
+#: children/templates/children/form.html:5
 #: children/templates/children/list.html:25
 msgid "Add child"
 msgstr "Kind hinzufügen"
@@ -247,8 +233,9 @@ msgstr "Kind hinzufügen"
 msgid "Save"
 msgstr "Speichern"
 
-#: children/templates/children/list.html:3 children/templates/children/list.html:5
-#: templates/base.html:24 worksheets/templates/worksheets/week_list.html:5
+#: children/templates/children/list.html:3
+#: children/templates/children/list.html:5 templates/base.html:24
+#: worksheets/templates/worksheets/week_list.html:5
 msgid "My children"
 msgstr "Meine Kinder"
 
@@ -262,9 +249,7 @@ msgstr "Bearbeiten"
 
 #: children/templates/children/list.html:23
 msgid "Add your child to get started. You can add several children."
-msgstr ""
-"Fügen Sie Ihr Kind hinzu, um loszulegen. Sie können mehrere Kinder "
-"hinzufügen."
+msgstr "Fügen Sie Ihr Kind hinzu, um loszulegen. Sie können mehrere Kinder hinzufügen."
 
 #: children/views.py:26
 #, python-format
@@ -285,12 +270,8 @@ msgid "Welcome"
 msgstr "Willkommen"
 
 #: core/templates/core/home.html:5
-msgid ""
-"Upload your child's weekly worksheets and get a short, printable study plan "
-"for every school day."
-msgstr ""
-"Laden Sie die Arbeitsblätter Ihres Kindes hoch und erhalten Sie für jeden "
-"Schultag einen kurzen Lernplan zum Ausdrucken."
+msgid "Upload your child's weekly worksheets and get a short, printable study plan for every school day."
+msgstr "Laden Sie die Arbeitsblätter Ihres Kindes hoch und erhalten Sie für jeden Schultag einen kurzen Lernplan zum Ausdrucken."
 
 #: jobs/admin.py:19
 msgid "Retry failed jobs"
@@ -323,7 +304,7 @@ msgstr "erledigt"
 msgid "failed"
 msgstr "fehlgeschlagen"
 
-#: jobs/models.py:13 plans/models.py:84
+#: jobs/models.py:13 plans/models.py:91
 msgid "kind"
 msgstr "Art"
 
@@ -402,9 +383,7 @@ msgstr "Zeitlimit (Sekunden)"
 
 #: llm/models.py:30
 msgid "How long one AI request may take. Loading a model can take a while."
-msgstr ""
-"Wie lange eine KI-Anfrage dauern darf. Das Laden eines Modells kann etwas "
-"dauern."
+msgstr "Wie lange eine KI-Anfrage dauern darf. Das Laden eines Modells kann etwas dauern."
 
 #: llm/models.py:34
 msgid "last checked"
@@ -432,33 +411,21 @@ msgstr "Installierte Modelle:"
 
 #: llm/templates/admin/llm/ollamasettings/change_form.html:12
 #, python-format
-msgid ""
-"The model \"%(model)s\" is not installed. Run \"ollama pull %(model)s\" on "
-"the AI PC."
-msgstr ""
-"Das Modell „%(model)s“ ist nicht installiert. Führen Sie „ollama pull "
-"%(model)s“ auf dem KI-PC aus."
+msgid "The model \"%(model)s\" is not installed. Run \"ollama pull %(model)s\" on the AI PC."
+msgstr "Das Modell „%(model)s“ ist nicht installiert. Führen Sie „ollama pull %(model)s“ auf dem KI-PC aus."
 
 #: llm/templates/admin/llm/ollamasettings/change_form.html:16
 msgid "Ollama is not reachable."
 msgstr "Ollama ist nicht erreichbar."
 
 #: llm/templates/admin/llm/ollamasettings/change_form.html:17
-msgid ""
-"That's fine while the AI PC is switched off: uploads wait and are analysed "
-"once it is back."
-msgstr ""
-"Das ist in Ordnung, solange der KI-PC aus ist: Uploads warten und werden "
-"analysiert, sobald er wieder läuft."
+msgid "That's fine while the AI PC is switched off: uploads wait and are analysed once it is back."
+msgstr "Das ist in Ordnung, solange der KI-PC aus ist: Uploads warten und werden analysiert, sobald er wieder läuft."
 
 #: llm/templates/admin/llm/ollamasettings/change_form.html:20
 #, python-format
-msgid ""
-"Jobs waiting: %(jobs_waiting)s · running: %(jobs_running)s · failed: "
-"%(jobs_failed)s"
-msgstr ""
-"Wartende Aufgaben: %(jobs_waiting)s · laufend: %(jobs_running)s · "
-"fehlgeschlagen: %(jobs_failed)s"
+msgid "Jobs waiting: %(jobs_waiting)s · running: %(jobs_running)s · failed: %(jobs_failed)s"
+msgstr "Wartende Aufgaben: %(jobs_waiting)s · laufend: %(jobs_running)s · fehlgeschlagen: %(jobs_failed)s"
 
 #: llm/templates/admin/llm/ollamasettings/change_form.html:21
 msgid "Show jobs"
@@ -537,11 +504,11 @@ msgstr "Lernpläne"
 msgid "weekday"
 msgstr "Wochentag"
 
-#: plans/models.py:45 plans/models.py:86
+#: plans/models.py:45 plans/models.py:93
 msgid "subject"
 msgstr "Fach"
 
-#: plans/models.py:46 plans/models.py:87
+#: plans/models.py:46 plans/models.py:94
 msgid "topic"
 msgstr "Thema"
 
@@ -549,79 +516,95 @@ msgstr "Thema"
 msgid "outline"
 msgstr "Gliederung"
 
+#: plans/models.py:50
+msgid "title"
+msgstr "Titel"
+
+#: plans/models.py:51
+msgid "translated titles"
+msgstr "übersetzte Titel"
+
 # | msgid "Being written"
-#: plans/models.py:49
+#: plans/models.py:52
 msgid "written"
 msgstr "geschrieben"
 
 #: plans/models.py:53
+msgid "translated"
+msgstr "übersetzt"
+
+#: plans/models.py:57
 msgid "plan day"
 msgstr "Plantag"
 
-#: plans/models.py:54
+#: plans/models.py:58
 msgid "plan days"
 msgstr "Plantage"
 
-#: plans/models.py:73
+#: plans/models.py:80
 msgid "Do you remember?"
 msgstr "Weißt du noch?"
 
-#: plans/models.py:74
+#: plans/models.py:81
 msgid "Puzzle of the day"
 msgstr "Rätsel des Tages"
 
-#: plans/models.py:75
+#: plans/models.py:82
 msgid "Main task"
 msgstr "Hauptaufgabe"
 
-#: plans/models.py:76
+#: plans/models.py:83
 msgid "Explain it to me"
 msgstr "Erklär es mir"
 
-#: plans/models.py:77
+#: plans/models.py:84
 msgid "How did it go?"
 msgstr "Wie war’s?"
 
-#: plans/models.py:78
+#: plans/models.py:85
 msgid "Friday quiz"
 msgstr "Quiz-Freitag"
 
-#: plans/models.py:79
+#: plans/models.py:86
 msgid "Research question"
 msgstr "Forscherfrage"
 
-#: plans/models.py:80
+#: plans/models.py:87
 msgid "Looking back on the week"
 msgstr "Wochenrückblick"
 
 # | msgid "Monday"
-#: plans/models.py:82
+#: plans/models.py:89
 msgid "day"
 msgstr "Tag"
 
-#: plans/models.py:83
+#: plans/models.py:90
 msgid "order"
 msgstr "Reihenfolge"
 
 # | msgid "minutes per day"
-#: plans/models.py:85
+#: plans/models.py:92
 msgid "minutes"
 msgstr "Minuten"
 
-#: plans/models.py:89
+#: plans/models.py:96
 msgid "content"
 msgstr "Inhalt"
 
+#: plans/models.py:98
+msgid "translations"
+msgstr "Übersetzungen"
+
 # | msgid "Worksheets"
-#: plans/models.py:91
+#: plans/models.py:100
 msgid "worksheet pages"
 msgstr "Arbeitsblatt-Seiten"
 
-#: plans/models.py:95
+#: plans/models.py:104
 msgid "exercise"
 msgstr "Übung"
 
-#: plans/models.py:96
+#: plans/models.py:105
 msgid "exercises"
 msgstr "Übungen"
 
@@ -645,12 +628,8 @@ msgid "All without help. Answer out loud or show it."
 msgstr "Alles ohne Hilfe. Antworte laut oder zeig es."
 
 #: plans/templates/plans/_day.html:10
-msgid ""
-"All from memory. Afterwards colour each task green (right) or yellow (keep "
-"practising)."
-msgstr ""
-"Alles aus dem Kopf. Male danach jede Aufgabe grün (richtig) oder gelb (noch "
-"üben) an."
+msgid "All from memory. Afterwards colour each task green (right) or yellow (keep practising)."
+msgstr "Alles aus dem Kopf. Male danach jede Aufgabe grün (richtig) oder gelb (noch üben) an."
 
 #: plans/templates/plans/_day.html:16
 msgid "Choose A or B:"
@@ -685,12 +664,8 @@ msgid "What would you like to know?"
 msgstr "Was möchtest du gern wissen?"
 
 #: plans/templates/plans/_day.html:29
-msgid ""
-"Pick one of your questions from this week. Find out the answer together "
-"(book, encyclopedia, asking someone). What did you discover?"
-msgstr ""
-"Such dir eine deiner Fragen von dieser Woche aus. Findet die Antwort "
-"zusammen heraus (Buch, Lexikon, jemanden fragen). Was habt ihr entdeckt?"
+msgid "Pick one of your questions from this week. Find out the answer together (book, encyclopedia, asking someone). What did you discover?"
+msgstr "Such dir eine deiner Fragen von dieser Woche aus. Findet die Antwort zusammen heraus (Buch, Lexikon, jemanden fragen). Was habt ihr entdeckt?"
 
 #: plans/templates/plans/_day.html:32
 msgid "Draw the best thing that happened at school this week and tell me about it."
@@ -713,62 +688,41 @@ msgstr "Worauf bist du stolz?"
 msgid "Based on:"
 msgstr "Grundlage:"
 
+# | msgid "language"
+#: plans/templates/plans/_switch.html:1
+msgid "Plan language:"
+msgstr "Sprache des Plans:"
+
 #: plans/templates/plans/_tips.html:2
 msgid "How to help your child"
 msgstr "So helfen Sie Ihrem Kind"
 
 #: plans/templates/plans/_tips.html:4
-msgid ""
-"Your child can't read yet: read every task aloud. Answers may be spoken, "
-"shown or drawn."
-msgstr ""
-"Ihr Kind kann noch nicht lesen: Lesen Sie jede Aufgabe vor. Antworten dürfen"
-" gesprochen, gezeigt oder gemalt werden."
+msgid "Your child can't read yet: read every task aloud. Answers may be spoken, shown or drawn."
+msgstr "Ihr Kind kann noch nicht lesen: Lesen Sie jede Aufgabe vor. Antworten dürfen gesprochen, gezeigt oder gemalt werden."
 
 #: plans/templates/plans/_tips.html:5
 #, python-format
-msgid ""
-"Every day at the same time, at most %(m)s minutes. Short and regular beats "
-"long. Stop early if your child is tired."
-msgid_plural ""
-"Every day at the same time, at most %(m)s minutes. Short and regular beats "
-"long. Stop early if your child is tired."
-msgstr[0] ""
-"Jeden Tag zur gleichen Zeit, höchstens %(m)s Minute. Lieber kurz und "
-"regelmäßig. Wenn Ihr Kind müde ist, früher aufhören."
-msgstr[1] ""
-"Jeden Tag zur gleichen Zeit, höchstens %(m)s Minuten. Lieber kurz und "
-"regelmäßig. Wenn Ihr Kind müde ist, früher aufhören."
+msgid "Every day at the same time, at most %(m)s minutes. Short and regular beats long. Stop early if your child is tired."
+msgid_plural "Every day at the same time, at most %(m)s minutes. Short and regular beats long. Stop early if your child is tired."
+msgstr[0] "Jeden Tag zur gleichen Zeit, höchstens %(m)s Minute. Lieber kurz und regelmäßig. Wenn Ihr Kind müde ist, früher aufhören."
+msgstr[1] "Jeden Tag zur gleichen Zeit, höchstens %(m)s Minuten. Lieber kurz und regelmäßig. Wenn Ihr Kind müde ist, früher aufhören."
 
 #: plans/templates/plans/_tips.html:6
-msgid ""
-"For “Do you remember?” don't help and don't look it up: remembering is the "
-"training. Mistakes are normal and useful."
-msgstr ""
-"Bei „Weißt du noch?“ nicht helfen und nicht nachschauen: Erinnern ist das "
-"Training. Fehler sind normal und hilfreich."
+msgid "For “Do you remember?” don't help and don't look it up: remembering is the training. Mistakes are normal and useful."
+msgstr "Bei „Weißt du noch?“ nicht helfen und nicht nachschauen: Erinnern ist das Training. Fehler sind normal und hilfreich."
 
 #: plans/templates/plans/_tips.html:7
-msgid ""
-"Praise the way, not the talent: “You counted again to check, good idea!” "
-"instead of “You're so clever!”"
-msgstr ""
-"Loben Sie den Weg, nicht das Talent: „Du hast nachgezählt, gute Idee!“ statt"
-" „Du bist so schlau!“"
+msgid "Praise the way, not the talent: “You counted again to check, good idea!” instead of “You're so clever!”"
+msgstr "Loben Sie den Weg, nicht das Talent: „Du hast nachgezählt, gute Idee!“ statt „Du bist so schlau!“"
 
 #: plans/templates/plans/_tips.html:8
-msgid ""
-"No rewards for studying (sweets, screen time). Your interest is the best "
-"reward."
-msgstr ""
-"Keine Belohnung fürs Lernen (Süßigkeiten, Bildschirmzeit). Ihr Interesse ist"
-" die beste Belohnung."
+msgid "No rewards for studying (sweets, screen time). Your interest is the best reward."
+msgstr "Keine Belohnung fürs Lernen (Süßigkeiten, Bildschirmzeit). Ihr Interesse ist die beste Belohnung."
 
 #: plans/templates/plans/_tips.html:9
 msgid "During “Explain it to me”, just listen and ask: “How did you do that?”"
-msgstr ""
-"Hören Sie bei „Erklär es mir“ einfach zu und fragen Sie nach: „Wie hast du "
-"das gemacht?“"
+msgstr "Hören Sie bei „Erklär es mir“ einfach zu und fragen Sie nach: „Wie hast du das gemacht?“"
 
 # | msgid "Study plans"
 #: plans/templates/plans/detail.html:4 plans/templates/plans/detail.html:7
@@ -778,7 +732,7 @@ msgid "Study plan for %(name)s"
 msgstr "Lernplan für %(name)s"
 
 #: plans/templates/plans/detail.html:6 plans/templates/plans/detail.html:8
-#: plans/templates/plans/print.html:21
+#: plans/templates/plans/print.html:22
 #: worksheets/templates/worksheets/week_detail.html:4
 #: worksheets/templates/worksheets/week_detail.html:7
 #: worksheets/templates/worksheets/week_list.html:13
@@ -786,51 +740,35 @@ msgstr "Lernplan für %(name)s"
 msgid "Week %(start)s–%(end)s"
 msgstr "Woche %(start)s–%(end)s"
 
-#: plans/templates/plans/detail.html:11 plans/templates/plans/print.html:16
-msgid ""
-"Note: these exercises were written by an AI. Please check them for accuracy "
-"before your child uses them."
-msgstr ""
-"Hinweis: Die Übungen wurden von einer KI erstellt. Bitte prüfen Sie sie auf "
-"Richtigkeit, bevor Ihr Kind sie benutzt."
+#: plans/templates/plans/detail.html:11 plans/templates/plans/print.html:17
+msgid "Note: these exercises were written by an AI. Please check them for accuracy before your child uses them."
+msgstr "Hinweis: Die Übungen wurden von einer KI erstellt. Bitte prüfen Sie sie auf Richtigkeit, bevor Ihr Kind sie benutzt."
 
 #: plans/templates/plans/detail.html:13
 msgid "Print plan"
 msgstr "Plan drucken"
 
-#: plans/templates/plans/detail.html:20
-msgid ""
-"The plan could not be written. Please try again; if it keeps failing, tell "
-"the admin."
-msgstr ""
-"Der Plan konnte nicht erstellt werden. Bitte versuchen Sie es erneut; wenn "
-"es weiter nicht klappt, sagen Sie dem Admin Bescheid."
+#: plans/templates/plans/detail.html:21
+msgid "The plan could not be written. Please try again; if it keeps failing, tell the admin."
+msgstr "Der Plan konnte nicht erstellt werden. Bitte versuchen Sie es erneut; wenn es weiter nicht klappt, sagen Sie dem Admin Bescheid."
 
 # | msgid ""
 # | "Waiting for the analysis server. Your worksheets are saved and will be "
 # | "analysed automatically as soon as it is switched on. You can close this "
 # | "page and come back later."
-#: plans/templates/plans/detail.html:22
-msgid ""
-"Waiting for the analysis server. The plan will be written automatically as "
-"soon as it is switched on. You can close this page and come back later."
-msgstr ""
-"Warten auf den Analyse-Server. Der Plan wird automatisch erstellt, sobald er"
-" eingeschaltet ist. Sie können diese Seite schließen und später "
-"wiederkommen."
+#: plans/templates/plans/detail.html:23
+msgid "Waiting for the analysis server. The plan will be written automatically as soon as it is switched on. You can close this page and come back later."
+msgstr "Warten auf den Analyse-Server. Der Plan wird automatisch erstellt, sobald er eingeschaltet ist. Sie können diese Seite schließen und später wiederkommen."
 
 # | msgid ""
-# | "The worksheets are being analysed. This can take a few minutes; the page "
+# | "The worksheets are being analysed. This can take a few minutes; the page
+# "
 # | "updates itself."
-#: plans/templates/plans/detail.html:24
-msgid ""
-"The plan is being written, one day after the other. This can take a few "
-"minutes; the page updates itself."
-msgstr ""
-"Der Plan wird geschrieben, ein Tag nach dem anderen. Das kann ein paar "
-"Minuten dauern; die Seite aktualisiert sich selbst."
+#: plans/templates/plans/detail.html:25
+msgid "The plan is being written, one day after the other. This can take a few minutes; the page updates itself."
+msgstr "Der Plan wird geschrieben, ein Tag nach dem anderen. Das kann ein paar Minuten dauern; die Seite aktualisiert sich selbst."
 
-#: plans/templates/plans/detail.html:29
+#: plans/templates/plans/detail.html:30
 msgid "Write a new plan"
 msgstr "Neuen Plan erstellen"
 
@@ -843,25 +781,24 @@ msgid "Print"
 msgstr "Drucken"
 
 # | msgid "Week %(start)s–%(end)s"
-#: plans/templates/plans/print.html:15
+#: plans/templates/plans/print.html:16
 #, python-format
 msgid "Study plan for %(name)s · Week %(start)s–%(end)s"
 msgstr "Lernplan für %(name)s · Woche %(start)s–%(end)s"
 
-#: plans/views.py:37
+#: plans/views.py:64
 msgid "Please wait until all worksheets are analysed."
 msgstr "Bitte warten Sie, bis alle Arbeitsblätter analysiert sind."
 
-#: plans/views.py:39
+#: plans/views.py:66
 msgid "No worksheet topics found for this week, so there is nothing to plan yet."
-msgstr ""
-"Für diese Woche wurden keine Themen auf den Arbeitsblättern gefunden, daher "
-"gibt es noch nichts zu planen."
+msgstr "Für diese Woche wurden keine Themen auf den Arbeitsblättern gefunden, daher gibt es noch nichts zu planen."
 
 # | msgid ""
-# | "The worksheets are being analysed. This can take a few minutes; the page "
+# | "The worksheets are being analysed. This can take a few minutes; the page
+# "
 # | "updates itself."
-#: plans/views.py:42
+#: plans/views.py:69
 msgid "The study plan is being written. This can take a few minutes."
 msgstr "Der Lernplan wird geschrieben. Das kann ein paar Minuten dauern."
 
@@ -891,9 +828,7 @@ msgstr "Fotos oder PDFs der Arbeitsblätter"
 
 #: worksheets/forms.py:38
 msgid "You can pick several files at once. Photos straight from the phone are fine."
-msgstr ""
-"Sie können mehrere Dateien auf einmal wählen. Fotos direkt vom Handy sind in"
-" Ordnung."
+msgstr "Sie können mehrere Dateien auf einmal wählen. Fotos direkt vom Handy sind in Ordnung."
 
 #: worksheets/forms.py:52
 #, python-format
@@ -1029,35 +964,20 @@ msgstr "Arbeitsblätter von %(name)s"
 
 #: worksheets/templates/worksheets/upload.html:7
 #, python-format
-msgid ""
-"Photograph or scan the work %(name)s was given this week. One photo per page"
-" works best: flat, well lit and the whole page in view."
-msgstr ""
-"Fotografieren oder scannen Sie die Aufgaben, die %(name)s diese Woche "
-"bekommen hat. Am besten ein Foto pro Seite: flach, gut beleuchtet und die "
-"ganze Seite im Bild."
+msgid "Photograph or scan the work %(name)s was given this week. One photo per page works best: flat, well lit and the whole page in view."
+msgstr "Fotografieren oder scannen Sie die Aufgaben, die %(name)s diese Woche bekommen hat. Am besten ein Foto pro Seite: flach, gut beleuchtet und die ganze Seite im Bild."
 
 #: worksheets/templates/worksheets/upload.html:12
 msgid "Upload"
 msgstr "Hochladen"
 
 #: worksheets/templates/worksheets/week_detail.html:10
-msgid ""
-"Waiting for the analysis server. Your worksheets are saved and will be "
-"analysed automatically as soon as it is switched on. You can close this page"
-" and come back later."
-msgstr ""
-"Warten auf den Analyse-Server. Ihre Arbeitsblätter sind gespeichert und "
-"werden automatisch analysiert, sobald er eingeschaltet ist. Sie können diese"
-" Seite schließen und später wiederkommen."
+msgid "Waiting for the analysis server. Your worksheets are saved and will be analysed automatically as soon as it is switched on. You can close this page and come back later."
+msgstr "Warten auf den Analyse-Server. Ihre Arbeitsblätter sind gespeichert und werden automatisch analysiert, sobald er eingeschaltet ist. Sie können diese Seite schließen und später wiederkommen."
 
 #: worksheets/templates/worksheets/week_detail.html:12
-msgid ""
-"The worksheets are being analysed. This can take a few minutes; the page "
-"updates itself."
-msgstr ""
-"Die Arbeitsblätter werden analysiert. Das kann ein paar Minuten dauern; die "
-"Seite aktualisiert sich selbst."
+msgid "The worksheets are being analysed. This can take a few minutes; the page updates itself."
+msgstr "Die Arbeitsblätter werden analysiert. Das kann ein paar Minuten dauern; die Seite aktualisiert sich selbst."
 
 # | msgid "Study plans"
 #: worksheets/templates/worksheets/week_detail.html:17
@@ -1070,12 +990,8 @@ msgid "Create study plan"
 msgstr "Lernplan erstellen"
 
 #: worksheets/templates/worksheets/week_detail.html:23
-msgid ""
-"Creates a Mon–Fri plan with exercises from the analysed worksheets, ready to"
-" print."
-msgstr ""
-"Erstellt einen Plan für Montag bis Freitag mit Übungen zu den analysierten "
-"Arbeitsblättern, fertig zum Drucken."
+msgid "Creates a Mon–Fri plan with exercises from the analysed worksheets, ready to print."
+msgstr "Erstellt einen Plan für Montag bis Freitag mit Übungen zu den analysierten Arbeitsblättern, fertig zum Drucken."
 
 #: worksheets/templates/worksheets/week_detail.html:25
 msgid "The study plan can be created once the worksheets are analysed."
@@ -1096,9 +1012,7 @@ msgstr "Schwierigkeit"
 
 #: worksheets/templates/worksheets/week_detail.html:45
 msgid "This doesn't look like a worksheet, so it will be left out of the plan."
-msgstr ""
-"Das sieht nicht nach einem Arbeitsblatt aus und wird im Plan nicht "
-"berücksichtigt."
+msgstr "Das sieht nicht nach einem Arbeitsblatt aus und wird im Plan nicht berücksichtigt."
 
 # | msgid "Analysed"
 #: worksheets/templates/worksheets/week_detail.html:48
@@ -1127,19 +1041,13 @@ msgid "Upload this week's worksheets"
 msgstr "Arbeitsblätter dieser Woche hochladen"
 
 #: worksheets/templates/worksheets/week_list.html:19
-msgid ""
-"No worksheets yet. Take photos of the work your child brought home and "
-"upload them here."
-msgstr ""
-"Noch keine Arbeitsblätter. Fotografieren Sie die Aufgaben, die Ihr Kind "
-"mitgebracht hat, und laden Sie sie hier hoch."
+msgid "No worksheets yet. Take photos of the work your child brought home and upload them here."
+msgstr "Noch keine Arbeitsblätter. Fotografieren Sie die Aufgaben, die Ihr Kind mitgebracht hat, und laden Sie sie hier hoch."
 
 #: worksheets/views.py:65
 #, python-format
 msgid "%(name)s could not be read. Please upload a photo (JPEG, PNG, HEIC) or a PDF."
-msgstr ""
-"%(name)s konnte nicht gelesen werden. Bitte laden Sie ein Foto (JPEG, PNG, "
-"HEIC) oder ein PDF hoch."
+msgstr "%(name)s konnte nicht gelesen werden. Bitte laden Sie ein Foto (JPEG, PNG, HEIC) oder ein PDF hoch."
 
 #: worksheets/views.py:87
 #, python-format

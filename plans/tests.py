@@ -1,5 +1,6 @@
 import datetime
 import json
+import re
 import shutil
 import tempfile
 from unittest import mock
@@ -16,7 +17,7 @@ from llm import client as llm
 from llm.models import OllamaSettings
 from worksheets.models import Page, Upload, Week
 
-from . import planner
+from . import planner, writer
 from .models import Plan
 
 User = get_user_model()
@@ -43,6 +44,7 @@ def add_page(week, subject, topic, examples=("3 · 5 = __",)):
 
 
 WEEKDAY_ANSWER = {
+    "title": "Einmaleins mit 2",
     "recall": ["4 × 2 = ___", "Was fressen Igel?", "Schreib richtig: die b__ne"],
     "puzzle": "Rate zuerst: Sind 6 Paar Socken mehr als 10 Socken?",
     "main_intro": "Hol Socken und lege sie in Paaren hin.",
@@ -55,6 +57,10 @@ FRIDAY_ANSWER = {"quiz": ["2 × 6 = ___", "Was fressen Igel?", "Schreib richtig:
 
 def fake_ollama(request):
     body = json.loads(request.content)
+    if "texts" in body["format"]["properties"]:
+        count = int(re.search(r"exactly (\d+) translated", body["messages"][0]["content"]).group(1))
+        texts = ["Times table with 2"] + [f"English text {i}" for i in range(1, count)]
+        return httpx.Response(200, json={"message": {"content": json.dumps({"texts": texts})}})
     friday = "quiz" in body["format"]["properties"]
     answer = FRIDAY_ANSWER if friday else WEEKDAY_ANSWER
     return httpx.Response(200, json={"message": {"content": json.dumps(answer)}})
@@ -171,6 +177,45 @@ class PlanFlowTests(TestCase):
         self.assertContains(printed, "Freitag")
         self.assertContains(printed, "von einer KI erstellt")
         self.assertNotContains(printed, "Einmaleins mit 2.jpg")  # no sources on paper
+
+    def test_plan_is_german_with_an_english_version(self):
+        self.client.post(self.base + "create/")
+        self.assertEqual(self.run_jobs(fake_ollama), [True])
+        plan = Plan.objects.get()
+        self.assertEqual(plan.language, "de")
+        monday = plan.days.get(weekday=0)
+        self.assertEqual(monday.title, "Einmaleins mit 2")
+        self.assertEqual(monday.title_translations["en"], "Times table with 2")
+        main = monday.exercises.get(kind="main")
+        self.assertEqual(main.content["choices"][0]["title"], "Mit Bildern")
+        self.assertEqual([c["label"] for c in main.translations["en"]["choices"]], ["A", "B"])
+        self.assertTrue(all(d.translated for d in plan.days.all()))
+
+        german = self.client.get(self.base)
+        self.assertContains(german, "Mit Bildern")
+        self.assertContains(german, '<a href="?lang=en" lang="en">English</a>', html=True)
+        english = self.client.get(self.base + "?lang=en")
+        self.assertContains(english, "Monday · Times table with 2")
+        self.assertContains(english, "Main task")
+        self.assertNotContains(english, "Mit Bildern")
+        self.assertContains(english, "print/?lang=en")
+        printed = self.client.get(self.base + "print/?lang=en")
+        self.assertContains(printed, '<html lang="en">')
+        self.assertContains(printed, "Monday · Times table with 2")
+        self.assertContains(self.client.get(self.base + "print/"), "Montag · Einmaleins mit 2")
+
+    def test_english_answer_is_rejected(self):
+        english = {
+            "title": "Times table with 2",
+            "recall": ["What is 4 × 2?", "What do hedgehogs eat?", "Spell the word bee"],
+            "puzzle": "Guess first: are 6 pairs of socks more than 10 socks?",
+            "main_intro": "Get your socks and put them in pairs.",
+            "choice_a": {"title": "With pictures", "text": "Draw 1 to 10 pairs of socks."},
+            "choice_b": {"title": "With numbers", "text": "Write the 2 times table."},
+            "explain": "Why are 5 × 2 and 2 × 5 the same?",
+        }
+        with self.assertRaisesMessage(ValueError, "English"):
+            writer.parse(planner.build_outline(self.week, 20)[0], english)
 
     def test_waits_while_server_is_off_and_keeps_written_days(self):
         self.client.post(self.base + "create/")

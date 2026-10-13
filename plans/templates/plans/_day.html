@@ -1,20 +1,20 @@
 {% load i18n %}
-<h2 class="day-title">{{ day.get_weekday_display }} · {% if day.is_friday %}{% translate "Quiz and research question" %}{% else %}{{ day.topic }}{% endif %}</h2>
+<h2 class="day-title">{{ day.get_weekday_display }} · {% if day.is_friday %}{% translate "Quiz and research question" %}{% else %}{{ day.shown_title }}{% endif %}</h2>
 {% for ex in day.exercises.all %}
   <section class="block">
     <h3>{{ forloop.counter }}. {{ ex.get_kind_display }} <span class="minutes">({% blocktranslate count m=ex.minutes %}{{ m }} min.{% plural %}{{ m }} min.{% endblocktranslate %})</span></h3>
     {% if ex.kind == "recall" %}
       <p>{% translate "From memory, without looking:" %}</p>
-      <ul>{% for item in ex.content.items %}<li>{{ item }}</li>{% endfor %}</ul>
+      <ul>{% for item in ex.shown.items %}<li>{{ item }}</li>{% endfor %}</ul>
     {% elif ex.kind == "quiz" %}
       <p>{% if klasse1 %}{% translate "All without help. Answer out loud or show it." %}{% else %}{% translate "All from memory. Afterwards colour each task green (right) or yellow (keep practising)." %}{% endif %}</p>
-      <ul>{% for item in ex.content.items %}<li>{{ item }}</li>{% endfor %}</ul>
+      <ul>{% for item in ex.shown.items %}<li>{{ item }}</li>{% endfor %}</ul>
     {% elif ex.kind == "puzzle" or ex.kind == "explain" %}
-      <p>{{ ex.content.text|linebreaksbr }}</p>
+      <p>{{ ex.shown.text|linebreaksbr }}</p>
     {% elif ex.kind == "main" %}
-      {% if ex.content.text %}<p>{{ ex.content.text|linebreaksbr }}</p>{% endif %}
-      {% if ex.content.choices|length > 1 %}<p>{% translate "Choose A or B:" %}</p>{% endif %}
-      {% for choice in ex.content.choices %}
+      {% if ex.shown.text %}<p>{{ ex.shown.text|linebreaksbr }}</p>{% endif %}
+      {% if ex.shown.choices|length > 1 %}<p>{% translate "Choose A or B:" %}</p>{% endif %}
+      {% for choice in ex.shown.choices %}
         <div class="choice"><strong>{{ choice.label }}{% if choice.title %} – {{ choice.title }}{% endif %}:</strong><br>{{ choice.text|linebreaksbr }}</div>
       {% endfor %}
     {% elif ex.kind == "reflect" %}

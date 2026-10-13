@@ -148,8 +148,8 @@ Chosen by Claude (Kai asked for "what makes sense"); change here if needed.
   PDF). Server-side PDF generation only if that proves insufficient.
 - **Languages:** German is the default and primary language; English is
   available as a second language (Django i18n). All user-facing text goes
-  through translations from the start. Generated plans and exercises are
-  written in the parent's chosen language (German by default).
+  through translations from the start. Generated plans are written in German and
+  also stored as an English translation; parents switch between them.
 - **Container:** one image, run with `gunicorn` (web) plus the job worker,
   started from a single entrypoint. Uploads and the database live in
   `/data`.
@@ -217,6 +217,7 @@ None right now. Add new ones here as they come up.
 | 2026-10-11 | Uploads: max 25 MB per file, 20 files per upload; each photo/PDF page is stored as a JPEG (long edge 1600 px) for the vision model, the original file is kept too | Claude, step 3 |
 | 2026-10-12 | Plans: the day-by-day outline (main topic per day, recall topics, minutes per block) is decided in code; the model only writes each day's content. Until ratings exist, earlier weeks' topics come back after 1, 2 and 4 weeks. The daily cap is stored per child (`daily_minutes`, default 20, admin-editable) | Claude, step 4 |
 | 2026-10-13 | The app is German for everyone by default; the browser's language is ignored. English only via the DE/EN switch | Kai reported missing German |
+| 2026-10-13 | Study plans are always written in German (German prompt, English answers are rejected and retried), then each day is translated to English; the plan page and printout switch between Deutsch and English | Kai: plan was still English, wants both languages |
 
 ## Working conventions for Claude
 
