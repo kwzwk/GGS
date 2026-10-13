@@ -1,14 +1,18 @@
-"""Ask the model to write one day's exercises for an outline from planner.py."""
+"""Ask the model to write one day's exercises for an outline from planner.py.
 
-import json
+Plans are written in German first, with the instructions in German too: small
+models answer in the language they are prompted in, and drift into English
+otherwise. An English version is then made by translating the finished day.
+"""
 
-LANGUAGE_NAMES = {"de": "German (Deutsch)", "en": "English"}
+import re
+
 SUBJECT_NAMES = {
-    "math": "maths",
-    "german": "German (Deutsch)",
-    "science": "general studies (Sachunterricht)",
-    "english": "English",
-    "other": "other",
+    "math": "Mathematik",
+    "german": "Deutsch",
+    "science": "Sachunterricht",
+    "english": "Englisch",
+    "other": "Sonstiges",
 }
 
 CHOICE = {
@@ -19,6 +23,7 @@ CHOICE = {
 WEEKDAY_SCHEMA = {
     "type": "object",
     "properties": {
+        "title": {"type": "string"},
         "recall": {"type": "array", "items": {"type": "string"}},
         "puzzle": {"type": "string"},
         "main_intro": {"type": "string"},
@@ -26,77 +31,104 @@ WEEKDAY_SCHEMA = {
         "choice_b": CHOICE,
         "explain": {"type": "string"},
     },
-    "required": ["recall", "puzzle", "main_intro", "choice_a", "choice_b", "explain"],
+    "required": ["title", "recall", "puzzle", "main_intro", "choice_a", "choice_b", "explain"],
 }
 FRIDAY_SCHEMA = {
     "type": "object",
     "properties": {"quiz": {"type": "array", "items": {"type": "string"}}},
     "required": ["quiz"],
 }
+TRANSLATION_SCHEMA = {
+    "type": "object",
+    "properties": {"texts": {"type": "array", "items": {"type": "string"}}},
+    "required": ["texts"],
+}
 
-RULES = """You write one day of a printed study plan for a child at a German primary school (Grundschule), Klasse {class_level}.
-The parent sits with the child; the child works on paper. Write everything in {language}, addressed to the child ("du"), short and friendly.
+RULES = """Du schreibst einen Tag eines ausgedruckten Lernplans für ein Kind an einer Grundschule in Deutschland, Klasse {class_level}.
+Ein Elternteil sitzt dabei, das Kind arbeitet auf Papier. Schreibe ALLES auf Deutsch, kindgerecht, an das Kind gerichtet („du“), kurz und freundlich.
 
-Follow these learning principles:
-- Retrieval: recall questions are answered from memory, without looking. Low stakes, no grades.
-- Spacing and interleaving: mix the recall topics given, do not only repeat today's topic.
-- Curiosity: the puzzle asks the child to GUESS FIRST, then find out. It should be surprising or funny and connected to the main topic.
-- Concrete before abstract: use real objects (coins, socks, spoons, fingers, dice), pictures or drawing where it fits.
-- Autonomy: the main task offers two versions, A and B, of the same practice (e.g. with pictures/objects vs. with numbers/words). The child picks one.
-- Self-explanation: the explain prompt asks the child to explain HOW or WHY in their own words, to the parent.
-- Right difficulty for Klasse {class_level}: solvable with some effort. Base the tasks on the worksheet examples, but write NEW tasks, do not copy them.
-- No rewards, no praise for being clever, no answer key and no solutions anywhere.
-- Each task must fit its minutes. Keep texts short: a child reads (or hears) them.
+Halte dich an diese Lernprinzipien:
+- Abrufen: Die Fragen bei „Weißt du noch?“ werden aus dem Gedächtnis beantwortet, ohne nachzuschauen. Keine Noten.
+- Verteilen und Mischen: Mische die angegebenen Wiederholungsthemen, nicht nur das heutige Thema.
+- Neugier: Das Rätsel fordert das Kind auf, ZUERST ZU RATEN und es dann herauszufinden. Es soll überraschend oder lustig sein und zum Hauptthema passen.
+- Erst konkret, dann abstrakt: Nutze echte Gegenstände (Münzen, Socken, Löffel, Finger, Würfel), Bilder oder Malen, wo es passt.
+- Selbstbestimmung: Die Hauptaufgabe hat zwei Varianten, A und B, für dieselbe Übung (z. B. mit Bildern oder Gegenständen bzw. mit Zahlen oder Wörtern). Das Kind wählt.
+- Selbsterklärung: Bei „Erklär es mir“ erklärt das Kind mit eigenen Worten, WIE oder WARUM.
+- Passende Schwierigkeit für Klasse {class_level}: mit etwas Anstrengung lösbar. Orientiere dich an den Beispielen vom Arbeitsblatt, aber schreibe NEUE Aufgaben und kopiere sie nicht.
+- Keine Belohnungen, kein Lob fürs Schlau-Sein, keine Lösungen und keine Antworten.
+- Jede Aufgabe muss in ihre Minuten passen. Kurze Texte: Ein Kind liest oder hört sie.
 {klasse1}"""
 
-KLASSE1 = """- Klasse 1: the child cannot read yet. The parent reads everything aloud. Answers are spoken, shown, drawn, done with objects, or traced. Writing only as tracing single letters or numbers. Introduce letters by their sound first, numbers with objects and dice patterns."""
+KLASSE1 = """- Klasse 1: Das Kind kann noch nicht lesen. Die Eltern lesen alles vor. Antworten werden gesprochen, gezeigt, gemalt, mit Gegenständen gemacht oder nachgespurt. Schreiben nur als Nachspuren einzelner Buchstaben oder Zahlen. Buchstaben zuerst über ihren Laut einführen, Zahlen mit Gegenständen und Würfelbildern."""
+
+REMINDER = "\n\nWICHTIG: Schreibe alle Texte auf Deutsch, nicht auf Englisch."
+
+TRANSLATE = """Translate these texts from a German primary-school study plan (Klasse {class_level}) into simple, child-friendly English.
+Keep the meaning, the order, line breaks and blanks like ___. Keep numbers and maths as they are. Do not add answers.
+German words that are themselves being practised (spelling, letter sounds, reading words) stay in German.
+Return "texts": exactly {count} translated texts in the same order.
+
+{texts}"""
 
 
 def _topic_text(topic):
-    lines = [f"- {SUBJECT_NAMES.get(topic.get('subject'), 'other')}: {topic['topic']}"]
+    lines = [f"- {SUBJECT_NAMES.get(topic.get('subject'), 'Sonstiges')}: {topic['topic']}"]
     if topic.get("summary"):
-        lines.append(f"  About: {topic['summary']}")
+        lines.append(f"  Worum es geht: {topic['summary']}")
     if topic.get("examples"):
-        lines.append("  Examples from the worksheet: " + " | ".join(topic["examples"][:6]))
+        lines.append("  Beispiele vom Arbeitsblatt: " + " | ".join(topic["examples"][:6]))
     return "\n".join(lines)
 
 
-def _reminder(language):
-    # Small models drift into English; repeat the language at the end, where it sticks.
-    return f"\n\nIMPORTANT: write every text value in {LANGUAGE_NAMES.get(language, 'German')}."
-
-
-def build_prompt(day, class_level, language):
-    rules = RULES.format(
-        class_level=class_level,
-        language=LANGUAGE_NAMES.get(language, "German"),
-        klasse1=KLASSE1 if class_level == 1 else "",
-    )
+def build_prompt(day, class_level):
+    rules = RULES.format(class_level=class_level, klasse1=KLASSE1 if class_level == 1 else "")
     minutes = dict(day["blocks"])
-    recall = "\n".join(_topic_text(t) for t in day["recall"]) or "- (none yet: ask about today's school day and the main topic of the last days)"
+    recall = "\n".join(_topic_text(t) for t in day["recall"]) or (
+        "- (noch keine: frage nach dem heutigen Schultag und den Themen der letzten Tage)"
+    )
     if day["weekday"] == 4:
-        task = f"""Today is Friday: a mixed quiz of the whole week ({minutes.get('quiz')} minutes), answered from memory.
-Topics to mix (interleave them, alternate subjects):
+        task = f"""Heute ist Freitag: ein gemischtes Quiz der ganzen Woche ({minutes.get('quiz')} Minuten), aus dem Gedächtnis.
+Themen zum Mischen (abwechseln, Fächer wechseln):
 {recall}
 
-Write "quiz": 5 to 8 short questions or tasks, at most one line each."""
-        return rules + "\n\n" + task + _reminder(language), FRIDAY_SCHEMA
+Schreibe "quiz": 5 bis 8 kurze Fragen oder Aufgaben, höchstens eine Zeile pro Frage."""
+        return rules + "\n\n" + task + REMINDER, FRIDAY_SCHEMA
 
-    parts = [f"Main topic today:\n{_topic_text(day['main'])}", f"Topics for recall:\n{recall}", "Write:"]
+    parts = [
+        f"Hauptthema heute:\n{_topic_text(day['main'])}",
+        f"Themen zum Wiederholen:\n{recall}",
+        "Schreibe:",
+        '- "title": den Namen des Hauptthemas auf Deutsch, kurz (z. B. „Einmaleins mit 2“).',
+    ]
     if "recall" in minutes:
-        parts.append(f'- "recall": 3 short recall questions mixing the recall topics ({minutes["recall"]} minutes in total). One line each.')
+        parts.append(
+            f'- "recall": 3 kurze Wiederholungsfragen, die die Wiederholungsthemen mischen '
+            f'({minutes["recall"]} Minuten zusammen). Je eine Zeile.'
+        )
     parts.append(
-        f'- "puzzle": a guess-first puzzle leading into the main topic ({minutes.get("puzzle", 0)} minutes). One or two sentences.'
+        f'- "puzzle": ein Rätsel zum Vorab-Raten, das zum Hauptthema hinführt ({minutes["puzzle"]} Minuten). '
+        "Ein oder zwei Sätze."
         if "puzzle" in minutes
-        else '- "puzzle": an empty string.'
+        else '- "puzzle": ein leerer Text.'
     )
     parts.append(
-        f'- "main_intro": one or two sentences that start the main task ({minutes["main"]} minutes).\n'
-        '- "choice_a" and "choice_b": the two versions of the main task, each with a short "title" '
-        '(e.g. "Mit Bildern") and a "text" with the concrete tasks (use line breaks between tasks).'
+        f'- "main_intro": ein oder zwei Sätze, mit denen die Hauptaufgabe beginnt ({minutes["main"]} Minuten).\n'
+        '- "choice_a" und "choice_b": die zwei Varianten der Hauptaufgabe, je mit kurzem "title" '
+        '(z. B. „Mit Bildern“) und einem "text" mit den konkreten Aufgaben (Zeilenumbrüche zwischen den Aufgaben).'
     )
-    parts.append(f'- "explain": one question for the child to explain to the parent ({minutes["explain"]} minutes).')
-    return rules + "\n\n" + "\n\n".join(parts) + _reminder(language), WEEKDAY_SCHEMA
+    parts.append(f'- "explain": eine Frage, bei der das Kind den Eltern etwas erklärt ({minutes["explain"]} Minuten).')
+    return rules + "\n\n" + "\n".join(parts) + REMINDER, WEEKDAY_SCHEMA
+
+
+EN_WORDS = {"the", "and", "you", "your", "with", "what", "how", "is", "are", "of", "to", "can", "this", "it"}
+DE_WORDS = {"der", "die", "das", "und", "du", "ist", "mit", "wie", "was", "ein", "eine", "zu", "nicht", "dein", "deine"}
+
+
+def looks_english(texts):
+    words = [w.lower() for t in texts for w in re.findall(r"[A-Za-zÄÖÜäöüß]+", t)]
+    english = sum(w in EN_WORDS for w in words)
+    german = sum(w in DE_WORDS for w in words)
+    return english >= 3 and english > german
 
 
 def _lines(value, limit):
@@ -110,7 +142,7 @@ def _text(value, limit=1200):
 
 
 def parse(day, data):
-    """Map the model's answer onto the outline's blocks: [(kind, minutes, content)]."""
+    """Map the model's answer onto the outline's blocks: (title, [(kind, minutes, content)])."""
     if not isinstance(data, dict):
         data = {}
     blocks = []
@@ -135,5 +167,45 @@ def parse(day, data):
         blocks.append((kind, minutes, content))
     missing = [k for k, _, c in blocks if k in ("main", "quiz") and not (c.get("choices") or c.get("items"))]
     if missing:
-        raise ValueError(f"Model answer is missing {', '.join(missing)}: {json.dumps(data)[:300]}")
-    return blocks
+        raise ValueError(f"Model answer is missing {', '.join(missing)}")
+    title = _text(data.get("title"), 120)
+    if looks_english([title] + [s for _, _, c in blocks for s in flatten(c)]):
+        raise ValueError("Model answered in English instead of German")
+    return title, blocks
+
+
+def flatten(content):
+    """All texts of one exercise's content, in a fixed order."""
+    texts = []
+    if content.get("text"):
+        texts.append(content["text"])
+    texts += content.get("items", [])
+    for choice in content.get("choices", []):
+        texts += [choice.get("title", ""), choice.get("text", "")]
+    return texts
+
+
+def unflatten(content, texts):
+    """Rebuild a content dict like `content` from translated texts (consumes `texts`)."""
+    result = {}
+    if content.get("text"):
+        result["text"] = texts.pop(0)
+    if "items" in content:
+        result["items"] = [texts.pop(0) for _ in content["items"]]
+    if "choices" in content:
+        result["choices"] = [
+            {"label": c["label"], "title": texts.pop(0), "text": texts.pop(0)} for c in content["choices"]
+        ]
+    return result
+
+
+def build_translation_prompt(texts, class_level):
+    numbered = "\n".join(f"{i + 1}. {t}" for i, t in enumerate(texts))
+    return TRANSLATE.format(class_level=class_level, count=len(texts), texts=numbered), TRANSLATION_SCHEMA
+
+
+def parse_translation(texts, data):
+    translated = data.get("texts") if isinstance(data, dict) else None
+    if not isinstance(translated, list) or len(translated) != len(texts):
+        raise ValueError("Translation has a different number of texts")
+    return [_text(t, 1200) for t in translated]

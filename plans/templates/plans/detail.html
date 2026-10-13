@@ -10,7 +10,8 @@
   {% if plan.status == "done" %}
     <p class="notice disclaimer">{% translate "Note: these exercises were written by an AI. Please check them for accuracy before your child uses them." %}</p>
     <p class="actions">
-      <a class="button" href="{% url 'plans:print' child.pk week.week_start|date:'Y-m-d' %}">{% translate "Print plan" %}</a>
+      <a class="button" href="{% url 'plans:print' child.pk week.week_start|date:'Y-m-d' %}?lang={{ language }}">{% translate "Print plan" %}</a>
+      {% include "plans/_switch.html" %}
     </p>
     {% include "plans/_tips.html" with klasse1=klasse1 %}
     {% for day in days %}
