@@ -26,9 +26,9 @@ class LanguageTests(TestCase):
         self.assertContains(response, "Willkommen")
         self.assertContains(response, '<html lang="de">')
 
-    def test_english_from_browser_language(self):
-        response = self.client.get("/", HTTP_ACCEPT_LANGUAGE="en")
-        self.assertContains(response, "Welcome")
+    def test_german_even_for_an_english_browser(self):
+        response = self.client.get("/", HTTP_ACCEPT_LANGUAGE="en-US,en;q=0.9")
+        self.assertContains(response, "Willkommen")
 
     def test_language_switch_is_remembered(self):
         self.client.post("/i18n/setlang/", {"language": "en", "next": "/"})
@@ -59,3 +59,4 @@ class BasePathTests(TestCase):
     def test_paths_without_prefix_are_untouched(self):
         self.assertEqual(self._path_seen_by_app("/lernplan", "/healthz"), "/healthz")
         self.assertEqual(self._path_seen_by_app("/lernplan", "/lernplanx"), "/lernplanx")
+

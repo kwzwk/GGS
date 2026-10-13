@@ -216,6 +216,7 @@ None right now. Add new ones here as they come up.
 | 2026-10-10 | Compose file includes Watchtower (maintained nickfedor fork) to auto-update the app when CI publishes a new image | Kai |
 | 2026-10-11 | Uploads: max 25 MB per file, 20 files per upload; each photo/PDF page is stored as a JPEG (long edge 1600 px) for the vision model, the original file is kept too | Claude, step 3 |
 | 2026-10-12 | Plans: the day-by-day outline (main topic per day, recall topics, minutes per block) is decided in code; the model only writes each day's content. Until ratings exist, earlier weeks' topics come back after 1, 2 and 4 weeks. The daily cap is stored per child (`daily_minutes`, default 20, admin-editable) | Claude, step 4 |
+| 2026-10-13 | The app is German for everyone by default; the browser's language is ignored. English only via the DE/EN switch | Kai reported missing German |
 
 ## Working conventions for Claude
 

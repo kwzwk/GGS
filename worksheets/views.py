@@ -144,8 +144,10 @@ def page_delete(request, child_pk, pk):
 @require_POST
 def page_retry(request, child_pk, pk):
     page = _own_page(request, child_pk, pk)
-    if page.status == Page.Status.FAILED:
+    if page.status in (Page.Status.FAILED, Page.Status.DONE):
+        # Also used to analyse a page again, e.g. in the parent's current language.
+        language = translation.get_language() or "de"
         with transaction.atomic():
-            Page.objects.filter(pk=page.pk).update(status=Page.Status.QUEUED, error="")
+            Page.objects.filter(pk=page.pk).update(status=Page.Status.QUEUED, error="", language=language[:5])
             enqueue(ANALYSE, page_id=page.pk)
     return redirect("worksheets:week", child_pk=child_pk, week=page.upload.week.week_start.isoformat())

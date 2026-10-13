@@ -27,7 +27,7 @@ SCHEMA = {
     "required": ["is_worksheet", "subject", "topics", "task_types", "examples", "difficulty", "summary"],
 }
 
-LANGUAGE_NAMES = {"de": "German", "en": "English"}
+LANGUAGE_NAMES = {"de": "German (Deutsch)", "en": "English"}
 
 PROMPT = """You are helping a parent support their child at a German primary school (Grundschule), Klasse {class_level}.
 The image is a photo or scan of work the child was assigned at school this week.
@@ -41,7 +41,8 @@ Read it carefully and describe it:
 - difficulty: for a child in Klasse {class_level}: easy, medium or hard.
 - summary: one or two sentences for the parent about what the child practises.
 
-Write topics, task_types and summary in {language}. Keep examples in the language of the sheet. Only describe what you can see; do not invent tasks."""
+Only describe what you can see; do not invent tasks. Keep examples in the language of the sheet.
+IMPORTANT: write topics, task_types and summary in {language}."""
 
 
 def _normalise(data):
